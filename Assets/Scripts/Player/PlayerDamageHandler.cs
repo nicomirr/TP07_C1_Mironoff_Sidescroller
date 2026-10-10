@@ -10,11 +10,9 @@ namespace Game.Player
     public class PlayerDamageHandler
     {
         private readonly Health _playerHealth;
-        //private readonly PlayerDeath _playerDeath;
+
         private readonly PlayerKnockback _knockback;
         private readonly PlayerSpriteFlicker _spriteFlicker;
-
-        private readonly AudioPlayer _audioPlayer;
 
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly IPlayerStateChanger _stateChanger;
@@ -23,17 +21,15 @@ namespace Game.Player
         private readonly GameObject _player;
 
 
-        public PlayerDamageHandler(PlayerConfigSo data, Health playerHealth, PlayerKnockback knockback, PlayerSpriteFlicker spriteFlicker, AudioPlayer audioPlayer,
-               ICoroutineRunner coroutineRunner, IPlayerStateChanger stateChanger, GameObject player)
+        public PlayerDamageHandler(PlayerConfigSo data, Health playerHealth, PlayerKnockback knockback, PlayerSpriteFlicker spriteFlicker, 
+            ICoroutineRunner coroutineRunner, IPlayerStateChanger stateChanger, GameObject player)
         {
             _data = data;
 
             _playerHealth = playerHealth;
             _knockback = knockback;
-            //_playerDeath = playerDeath;
-            _spriteFlicker = spriteFlicker;
 
-            _audioPlayer = audioPlayer;
+            _spriteFlicker = spriteFlicker;
 
             _coroutineRunner = coroutineRunner;
             _stateChanger = stateChanger;
@@ -46,16 +42,10 @@ namespace Game.Player
             if (!_stateChanger.TryChangeState(PlayerState.Damaged)) return;
 
             _knockback.ApplyKnockback(damageDirection);
-            _playerHealth.TakeDamage(damage);            
+            _playerHealth.TakeDamage(damage);
 
-            if (_playerHealth.CurrentHealth <= 0)
-            {
-                HandleDeath();
-                return;
-            }
-
-            //_audioPlayer.PlayAudio(AudioCategory.DamageSFX);
-
+            if (_playerHealth.CurrentHealth <= 0) return;
+                                   
             _coroutineRunner.RunCoroutine(DamageRoutine());
         }
 
@@ -67,15 +57,5 @@ namespace Game.Player
             if (!_stateChanger.TryChangeState(PlayerState.Normal))            
                 Debug.LogError("ERROR. Deberia poder salir a normal siempre al terminar de recuperarse del daño");            
         }
-
-        private void HandleDeath()
-        {
-            //PlayerEvents.RaisePlayerDeath();
-
-            //_playerDeath.SpawnSkull();
-
-            _player.SetActive(false);
-        }
     }
-
 }

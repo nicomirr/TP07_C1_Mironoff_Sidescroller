@@ -15,8 +15,8 @@ TagManager:
   - Player
   - Throwable
   - PixelPresentation
-  - 
-  - 
+  - Enemy
+  - Doll
   - 
   - 
   - 
@@ -47,8 +47,8 @@ TagManager:
   - name: Throwable
     uniqueID: 1324166857
     locked: 0
-  - name: Test
-    uniqueID: 631272031
+  - name: Enemy
+    uniqueID: 2765457765
     locked: 0
   m_RenderingLayers:
   - Default

@@ -14,6 +14,8 @@ namespace Game.Player
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour, ICoroutineRunner
     {
+        [SerializeField] private PlayerDoll _doll;
+
         [SerializeField] private PlayerConfigSo _data;
 
         [SerializeField] private UIHealth _UIHealth;
@@ -76,8 +78,7 @@ namespace Game.Player
 
             PlayerKnockback knockback = new PlayerKnockback(_data, _rb);
 
-            PlayerDamageHandler damageHandler = new PlayerDamageHandler(_data, _playerHealth, knockback, spriteFlicker,
-                    audioPlayer, this, _playerFsm, gameObject);
+            PlayerDamageHandler damageHandler = new PlayerDamageHandler(_data, _playerHealth, knockback, spriteFlicker, this, _playerFsm, gameObject);
 
             _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler);
         }
@@ -92,7 +93,7 @@ namespace Game.Player
         }
 
         private void FixedUpdate()
-        {
+        {            
             HandleMovement();     
         }
 
@@ -107,6 +108,8 @@ namespace Game.Player
             HandleThrow();
 
             HandleThrowMovement();
+
+            HandleDeath();
         }
 
         private void OnDisable()
@@ -186,6 +189,22 @@ namespace Game.Player
             _playerMovement.Move(_playerInputs.Direction);
 
             _animationHandler.SetBool(AnimationType.PlayerIsMoving, _playerInputs.Direction != 0);
+        }
+
+        private void HandleDeath()
+        {
+            if (_playerHealth.CurrentHealth > 0) return;
+
+            PlayerDoll doll = Instantiate(_doll);
+
+            if (!_playerFacing.IsFacingRight)
+                doll.SetLeftAnimation();
+            else
+                doll.SetRightAnimation();
+
+            this.gameObject.SetActive(false);
+
+
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801723e339cfc494ca0ecd5abeef4dc2, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.PlayerConfigSo
-  _fsmTransitionsData: {fileID: 0}
+  _fsmTransitionsData: {fileID: 11400000, guid: 134a76e2042263049996146d6cce188d, type: 2}
   _animationsConfig: {fileID: 11400000, guid: cb31d864f7af1974ab521f1661fff2fd, type: 2}
   _throwablesFactoryData: {fileID: 11400000, guid: 4678ac8895a3f33468ec704bfd1b5d4a, type: 2}
   _initialThrowableType: 1
   _throwCooldown: 0.35
   _powerUpsData: {fileID: 0}
   _audioConfigData: {fileID: 11400000, guid: 3048f0c2a3b397f42899fddf294278ed, type: 2}
-  _damageFlickerData: {fileID: 0}
+  _damageFlickerData: {fileID: 11400000, guid: 67981812400101e469268aa0f9e0afd3, type: 2}
   _healthData: {fileID: 11400000, guid: c12728ee91ed5b045a7d5a6ab3ac4c2e, type: 2}
+  _knockbackData: {fileID: 11400000, guid: 1b415b2e50983e14c97c27e752594269, type: 2}
   _gravityData: {fileID: 11400000, guid: 423831a7d47436544ae32daf101e80e7, type: 2}
   _movementSpeed: 8
   _jumpData: {fileID: 11400000, guid: 8aaac7ef7ca02a745b5719f03def6ff9, type: 2}

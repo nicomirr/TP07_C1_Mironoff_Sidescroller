@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyDataSo
   _movementData: {fileID: 11400000, guid: ddffd8072d5ff7a46a62f9cdcfa09991, type: 2}
   _healthData: {fileID: 11400000, guid: 8dd392d5cc5f56d4eb7435ea72df150d, type: 2}
+  _contactDamage: 1

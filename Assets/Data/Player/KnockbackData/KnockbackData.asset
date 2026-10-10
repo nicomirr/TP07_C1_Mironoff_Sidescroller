@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf3034fc5f8a03499a686da12c63260, type: 3}
   m_Name: KnockbackData
   m_EditorClassIdentifier: Assembly-CSharp::KnockbackDataSo
-  _horizontalKnockbackForce: 0
-  _verticalKnockbackForce: 0
+  _horizontalKnockbackForce: 10
+  _verticalKnockbackForce: 7
