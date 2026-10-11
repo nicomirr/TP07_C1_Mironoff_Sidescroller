@@ -20,7 +20,7 @@ namespace Game.Player
 
         [SerializeField] private UIHealth _UIHealth;
 
-        [SerializeField] private Transform _trowablesParent;
+        [SerializeField] private Transform _throwablesParent;
 
         private Rigidbody2D _rb;
 
@@ -28,7 +28,7 @@ namespace Game.Player
 
         private PlayerInputs _playerInputs;
         private PlayerStateMachine _playerFsm;
-        private AnimationHandler _animationHandler;
+        private PlayerAnimations _playerAnimations;
         private PlayerFacing _playerFacing;
         private PlayerMovement _playerMovement;
         private PlayerJump _playerJump;
@@ -36,8 +36,9 @@ namespace Game.Player
         private PlayerGravity _playerGravity;
         private PlayerThrow _playerThrow;
         private Health _playerHealth;
+        private PickableHandler _pickableHandler;
         private PlayerCollisionHandler _playerCollisionHandler;
-        private PlayerKnockback _knockback;
+
 
         private void Awake()
         {
@@ -50,7 +51,9 @@ namespace Game.Player
             _playerInputs = new PlayerInputs();
 
             AnimationLibrary animationLibrary = new AnimationLibrary(_data.AnimationsConfig, this.gameObject);
-            _animationHandler = new AnimationHandler(GetComponentInChildren<Animator>(), animationLibrary);
+            AnimationHandler animationHandler = new AnimationHandler(GetComponentInChildren<Animator>(), animationLibrary);
+
+            _playerAnimations = new PlayerAnimations(animationHandler);
 
             _playerFacing = new PlayerFacing(this.transform);
 
@@ -65,7 +68,7 @@ namespace Game.Player
 
             _playerGravity = new PlayerGravity(_rb, _data);
 
-            ThrowableFactory throwableFactory = new ThrowableFactory(_data.ThrowablesFactoryData, _trowablesParent);
+            ThrowableFactory throwableFactory = new ThrowableFactory(_data.ThrowablesFactoryData, _throwablesParent);
 
             ThrowablePool throwablePool = new ThrowablePool(throwableFactory);
 
@@ -79,12 +82,15 @@ namespace Game.Player
             PlayerKnockback knockback = new PlayerKnockback(_data, _rb);
 
             PlayerDamageHandler damageHandler = new PlayerDamageHandler(_data, _playerHealth, knockback, spriteFlicker, this, _playerFsm, gameObject);
-
-            _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler);
+            _pickableHandler = new PickableHandler();
+            
+            _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler, _pickableHandler);
         }
 
         private void OnEnable()
-        {            
+        {
+            _pickableHandler.OnHealPlayer += _playerHealth.Heal;
+
             _playerAnimationEvents.OnThrowFinished += HandleThrowFinished;
 
             _playerGroundCheck.OnJustLanded += HandleLand;
@@ -114,6 +120,8 @@ namespace Game.Player
 
         private void OnDisable()
         {
+            _pickableHandler.OnHealPlayer -= _playerHealth.Heal;
+
             _playerAnimationEvents.OnThrowFinished -= HandleThrowFinished;
 
             _playerGroundCheck.OnJustLanded -= HandleLand;
@@ -129,7 +137,7 @@ namespace Game.Player
         private void HandlePlayerDirection()
         {
             _playerFacing.FlipPlayer(_playerInputs.Direction);
-            _animationHandler.SetFloat(AnimationType.PlayerDirection, _playerFacing.IsFacingRight ? 1f : -1f);
+            _playerAnimations.SetPlayerDirection(_playerFacing.IsFacingRight ? 1f : -1f);
         }
 
         private void HandleJump()
@@ -145,13 +153,13 @@ namespace Game.Player
             if (_playerInputs.JumpPressed && _playerJump.CanJump)
             {
                 _playerJump.Jump();
-                _animationHandler.SetBool(AnimationType.PlayerIsJumping, true);        
+                _playerAnimations.SetJumpAnimation(true);       
             }
         }
 
         private void HandleLand()
         {
-            _animationHandler.SetBool(AnimationType.PlayerIsJumping, false);            
+            _playerAnimations.SetJumpAnimation(false);        
         }
 
         private void HandleThrow()
@@ -160,7 +168,7 @@ namespace Game.Player
 
             if (!_playerInputs.ThrowPressed || !_playerThrow.CanThrow) return;
 
-            _animationHandler.SetBool(AnimationType.PlayerIsThrowing, true);
+            _playerAnimations.SetThrowAnimation(true);
         }
         private void HandleThrowMovement()
         {
@@ -173,13 +181,13 @@ namespace Game.Player
             else
                 throwMovement = (int)ThrowMovement.Idle; 
 
-            _animationHandler.SetFloat(AnimationType.PlayerThrowMovement, throwMovement);
+            _playerAnimations.SetThrowMovement(throwMovement);
         }
         private void HandleThrowFinished()
         {
             _playerThrow.Throw(_playerFacing.IsFacingRight ? 1 : -1, _rb.linearVelocity);
 
-            _animationHandler.SetBool(AnimationType.PlayerIsThrowing, false);
+            _playerAnimations.SetThrowAnimation(false);
         }
 
         private void HandleMovement()
@@ -188,7 +196,7 @@ namespace Game.Player
 
             _playerMovement.Move(_playerInputs.Direction);
 
-            _animationHandler.SetBool(AnimationType.PlayerIsMoving, _playerInputs.Direction != 0);
+            _playerAnimations.SetMoveAnimation(_playerInputs.Direction != 0);
         }
 
         private void HandleDeath()
@@ -214,6 +222,14 @@ namespace Game.Player
                 float damageDirection = this.transform.position.x - collision.transform.position.x;
 
                 _playerCollisionHandler.HandleDamageCollision(collision.gameObject, damageProvider, damageDirection);                
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out IPickable pickable))
+            {
+                _playerCollisionHandler.HandlePickableCollision(pickable);
             }
         }
 

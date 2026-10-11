@@ -7,11 +7,18 @@ namespace Game.Player
     {
         private readonly IPlayerStateReader _stateReader;
         private readonly PlayerDamageHandler _damageHandler;
+        private readonly PickableHandler _pickableHandler;
 
-        public PlayerCollisionHandler(IPlayerStateReader stateReader, PlayerDamageHandler damageHandler)
+        public PlayerCollisionHandler(IPlayerStateReader stateReader, PlayerDamageHandler damageHandler, PickableHandler pickableHandler)
         {
             _stateReader = stateReader;
             _damageHandler = damageHandler;
+            _pickableHandler = pickableHandler;
+        }
+
+        public void HandlePickableCollision(IPickable pickable)
+        {
+            _pickableHandler.NotifyPickable(pickable);
         }
 
         public void HandleDamageCollision(GameObject enemyObject, IDamageProvider damageProvider, float damageDirection)
@@ -26,10 +33,7 @@ namespace Game.Player
         }
 
         private void DestroyDamageCollided(GameObject enemy)
-        {
-            //_audioPlayer.PlayAudio(AudioCategory.PuffDestroySFX);
-            //_particleEffectsPlayer.PlayEffect(ParticleEffectType.Destroyed);
-
+        {            
             enemy.SetActive(false);
         }
     }

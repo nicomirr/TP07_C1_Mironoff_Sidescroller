@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using Game.Data;
+using Game.Core;
 
 namespace Game.Common
 {
@@ -22,6 +23,16 @@ namespace Game.Common
         public void TakeDamage(float damage)
         {
             _currentHealth = Mathf.Max(_currentHealth - damage, 0);
+
+            OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        }
+
+        public void Heal(IPickable pickable)
+        {
+            if(_currentHealth == _maxHealth) return;
+
+            _currentHealth = Math.Min(_currentHealth + pickable.Amount, _maxHealth);
+            pickable.Consume();
 
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
         }
