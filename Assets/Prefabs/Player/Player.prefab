@@ -674,6 +674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8891307752018172959}
+  - component: {fileID: 5763954599617537103}
   - component: {fileID: 7446181126852461503}
   - component: {fileID: 6833376841393045353}
   - component: {fileID: 1850685553182512005}
@@ -705,6 +706,18 @@ Transform:
   - {fileID: 8770867609850784711}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5763954599617537103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5156175835259768080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97fb43ea4506b3845adaa6e1c856c791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Marker.PlayerMarker
 --- !u!114 &7446181126852461503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,9 +730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edeaa1f4406199141ba3e32d33ff9bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _doll: {fileID: 201207104941614737, guid: 31122337f63f84f4d97f684510e7a9db, type: 3}
   _data: {fileID: 11400000, guid: 76b7920ae61f4244bb18857b09708d8b, type: 2}
-  _UIHealth: {fileID: 0}
-  _trowablesParent: {fileID: 0}
+  _UIHealth: {fileID: 2393359673728704003}
+  _throwablesParent: {fileID: 0}
 --- !u!50 &6833376841393045353
 Rigidbody2D:
   serializedVersion: 5
@@ -803,6 +817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4372227152280129861}
   - component: {fileID: 4004491414500385673}
+  - component: {fileID: 1176984261212961388}
   - component: {fileID: 6071126646350185827}
   - component: {fileID: 1174365261846013454}
   m_Layer: 0
@@ -839,6 +854,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a05078c1985e614a9e2d6379d843ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationEvents
+--- !u!114 &1176984261212961388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8793242305626112215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee6b6da610c92641b71a9a4050a0218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Marker.PlayerImageMarker
 --- !u!212 &6071126646350185827
 SpriteRenderer:
   serializedVersion: 2
@@ -885,7 +912,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1766382219
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: a30eb2b81ae35d44ab791975c3544cb0, type: 3}

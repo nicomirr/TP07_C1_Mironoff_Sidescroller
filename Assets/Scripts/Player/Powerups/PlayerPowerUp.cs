@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 using Game.Data;
 using Game.Core;
 
@@ -15,13 +14,7 @@ namespace Game.Player
         protected SpriteRenderer _spriteRenderer;
         protected PlayerSpriteFlicker _spriteFlicker;
 
-        public event Action OnPowerUpFinalized;
-        public abstract bool TryEnablePowerUp();
-
-        protected void RaisePowerUpFinalized()
-        {
-            OnPowerUpFinalized?.Invoke();
-        }
+        public abstract bool TryEnablePowerUp();       
     }
 
 }

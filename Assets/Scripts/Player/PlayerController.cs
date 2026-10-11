@@ -38,6 +38,7 @@ namespace Game.Player
         private Health _playerHealth;
         private PickableHandler _pickableHandler;
         private PlayerCollisionHandler _playerCollisionHandler;
+        private PlayerPowerUps _playerPowerUps;
 
 
         private void Awake()
@@ -77,7 +78,9 @@ namespace Game.Player
             _playerHealth = new Health(_data.HealthData);
 
             GameObject playerImageObject = GetComponentInChildren<PlayerImageMarker>().gameObject;
-            PlayerSpriteFlicker spriteFlicker = new PlayerSpriteFlicker(playerImageObject.GetComponent<SpriteRenderer>());
+            SpriteRenderer playerSpriteRenderer = playerImageObject.GetComponent<SpriteRenderer>();
+
+            PlayerSpriteFlicker spriteFlicker = new PlayerSpriteFlicker(playerSpriteRenderer);
 
             PlayerKnockback knockback = new PlayerKnockback(_data, _rb);
 
@@ -85,6 +88,12 @@ namespace Game.Player
             _pickableHandler = new PickableHandler();
             
             _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler, _pickableHandler);
+
+            PlayerInvincibilityPowerUp invincibilityPow = new PlayerInvincibilityPowerUp(this, _playerFsm, spriteFlicker,
+                playerSpriteRenderer, _data.PowerUpsData.InvincibilityDataSo);
+
+            _playerPowerUps = new PlayerPowerUps();
+            _playerPowerUps.AddPowerUp(PowerUpType.Invincibility, invincibilityPow);
         }
 
         private void OnEnable()
@@ -230,6 +239,11 @@ namespace Game.Player
             if (collision.gameObject.TryGetComponent(out IPickable pickable))
             {
                 _playerCollisionHandler.HandlePickableCollision(pickable);
+            }
+            else if (collision.gameObject.TryGetComponent(out IPowerUp powerUp))
+            {
+                //hacer una clase player pickables y que suceda lo mismo
+                _playerPowerUps.TryEnablePowerUp(powerUp.PowerUpType);                
             }
         }
 
