@@ -42,15 +42,24 @@ namespace Game.Throwables
             _rb.linearVelocity = new Vector2(throwerVelocity.x + (Mathf.Sign(direction) * _data.HorizontalSpeed), _data.VerticalSpeed);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            ColliderDistance2D distance = _collider.Distance(collision);
+            Vector2 collisionPoint = collision.GetContact(0).point;
 
-            Vector2 impactPoint = distance.pointB;
-
-            CommandBus.Send(new PlayParticleEffectCommand(ParticleEffectType.RockImpact, impactPoint));
+            CommandBus.Send(new PlayParticleEffectCommand(ParticleEffectType.RockImpact, collisionPoint));
 
             gameObject.SetActive(false);
         }
+
+        //private void OnTriggerEnter2D(Collider2D collision)
+        //{
+        //    ColliderDistance2D distance = _collider.Distance(collision);
+
+        //    Vector2 impactPoint = distance.pointB;
+
+        //    CommandBus.Send(new PlayParticleEffectCommand(ParticleEffectType.RockImpact, impactPoint));
+
+        //    gameObject.SetActive(false);
+        //}
     }
 }
