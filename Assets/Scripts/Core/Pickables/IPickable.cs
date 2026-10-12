@@ -1,9 +1,10 @@
-namespace Game.Core
+using Game.Data;
+
+namespace Game.Pickables
 {
     public interface IPickable
     {
-        public float Amount { get; }
-        public PickableType PickableType { get; }
+        public PickableDataSo Data { get; }
 
         public void Consume();
     }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using Game.Data;
-using Game.Core;
 
 namespace Game.Common
 {
@@ -9,9 +8,9 @@ namespace Game.Common
     {
         public event Action<float, float> OnHealthChanged;
 
-        private readonly float _maxHealth;
+        protected readonly float _maxHealth;
         
-        private float _currentHealth;
+        protected float _currentHealth;
         public float CurrentHealth => _currentHealth;
 
         public Health(HealthDataSo data)
@@ -25,15 +24,10 @@ namespace Game.Common
             _currentHealth = Mathf.Max(_currentHealth - damage, 0);
 
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
-        }
+        }        
 
-        public void Heal(IPickable pickable)
+        protected void RaiseHealthChanged()
         {
-            if(_currentHealth == _maxHealth) return;
-
-            _currentHealth = Math.Min(_currentHealth + pickable.Amount, _maxHealth);
-            pickable.Consume();
-
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
         }
     }

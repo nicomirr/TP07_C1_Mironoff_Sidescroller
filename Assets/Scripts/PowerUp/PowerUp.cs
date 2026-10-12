@@ -8,9 +8,7 @@ namespace Game.PowerUp
     public class PowerUp : MonoBehaviour, IPowerUp
     {
         [SerializeField] private PowerUpDataSo _data;
-
-        public PowerUpType PowerUpType => _data.PowerUpType;
-        public AudioCategory AudioCategory => _data.PowerUpSfx;
+        public PowerUpDataSo Data => _data;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

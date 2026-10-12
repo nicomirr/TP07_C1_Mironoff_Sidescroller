@@ -1,5 +1,7 @@
 using UnityEngine;
 using Game.Core;
+using Game.Data;
+using Game.Pickables;
 
 namespace Game.Player
 {
@@ -7,19 +9,27 @@ namespace Game.Player
     {
         private readonly IPlayerStateReader _stateReader;
         private readonly PlayerDamageHandler _damageHandler;
-        private readonly PickableHandler _pickableHandler;
+        private readonly PlayerPowerUps _playerPowerUps;
+        private readonly PlayerPickableEffects _playerPickableEffects;
 
-        public PlayerCollisionHandler(IPlayerStateReader stateReader, PlayerDamageHandler damageHandler, PickableHandler pickableHandler)
+        public PlayerCollisionHandler(IPlayerStateReader stateReader, PlayerDamageHandler damageHandler,
+            PlayerPowerUps playerPowerUps, PlayerPickableEffects playerPickableEffects)
         {
             _stateReader = stateReader;
             _damageHandler = damageHandler;
-            _pickableHandler = pickableHandler;
+            _playerPowerUps = playerPowerUps;
+            _playerPickableEffects = playerPickableEffects;
+        }
+
+        public void HandlePowerUpsCollision(PowerUpDataSo data)
+        {
+            _playerPowerUps.EnablePowerUp(data);
         }
 
         public void HandlePickableCollision(IPickable pickable)
         {
-            _pickableHandler.NotifyPickable(pickable);
-        }
+            _playerPickableEffects.Consume(pickable);
+        }        
 
         public void HandleDamageCollision(GameObject enemyObject, IDamageProvider damageProvider, float damageDirection)
         {

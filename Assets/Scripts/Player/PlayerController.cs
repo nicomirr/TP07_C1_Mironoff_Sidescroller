@@ -8,6 +8,8 @@ using Game.Marker;
 using Game.Throwables;
 using Game.Common;
 using Game.UI;
+using Game.PowerUp;
+using Game.Pickables;
 
 namespace Game.Player
 {
@@ -35,10 +37,8 @@ namespace Game.Player
         private PlayerGroundCheck _playerGroundCheck;
         private PlayerGravity _playerGravity;
         private PlayerThrow _playerThrow;
-        private Health _playerHealth;
-        private PickableHandler _pickableHandler;
+        private PlayerHealth _playerHealth;
         private PlayerCollisionHandler _playerCollisionHandler;
-        private PlayerPowerUps _playerPowerUps;
 
 
         private void Awake()
@@ -75,7 +75,7 @@ namespace Game.Player
 
             _playerThrow = new PlayerThrow(throwablePool, GetComponentInChildren<ThrowableOriginMarker>().transform, _data);
 
-            _playerHealth = new Health(_data.HealthData);
+            _playerHealth = new PlayerHealth(_data.HealthData);
 
             GameObject playerImageObject = GetComponentInChildren<PlayerImageMarker>().gameObject;
             SpriteRenderer playerSpriteRenderer = playerImageObject.GetComponent<SpriteRenderer>();
@@ -85,20 +85,25 @@ namespace Game.Player
             PlayerKnockback knockback = new PlayerKnockback(_data, _rb);
 
             PlayerDamageHandler damageHandler = new PlayerDamageHandler(_data, _playerHealth, knockback, spriteFlicker, this, _playerFsm, gameObject);
-            _pickableHandler = new PickableHandler();
             
-            _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler, _pickableHandler);
-
             PlayerInvincibilityPowerUp invincibilityPow = new PlayerInvincibilityPowerUp(this, _playerFsm, spriteFlicker,
-                playerSpriteRenderer, _data.PowerUpsData.InvincibilityDataSo);
+                playerSpriteRenderer);
 
-            _playerPowerUps = new PlayerPowerUps();
-            _playerPowerUps.AddPowerUp(PowerUpType.Invincibility, invincibilityPow);
+            PlayerPowerUps playerPowerUps = new PlayerPowerUps();
+            playerPowerUps.AddPowerUp(PowerUpType.Invincibility, invincibilityPow);
+
+            PlayerHealthEffect playerHealthEffect = new PlayerHealthEffect(_playerHealth);
+
+            PlayerPickableEffects playerPickableEffects = new PlayerPickableEffects();
+            playerPickableEffects.AddPickable(PickableType.HealthPotion, playerHealthEffect);
+
+            _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler, playerPowerUps, playerPickableEffects);
+
+            
         }
 
         private void OnEnable()
         {
-            _pickableHandler.OnHealPlayer += _playerHealth.Heal;
 
             _playerAnimationEvents.OnThrowFinished += HandleThrowFinished;
 
@@ -129,8 +134,6 @@ namespace Game.Player
 
         private void OnDisable()
         {
-            _pickableHandler.OnHealPlayer -= _playerHealth.Heal;
-
             _playerAnimationEvents.OnThrowFinished -= HandleThrowFinished;
 
             _playerGroundCheck.OnJustLanded -= HandleLand;
@@ -242,8 +245,7 @@ namespace Game.Player
             }
             else if (collision.gameObject.TryGetComponent(out IPowerUp powerUp))
             {
-                //hacer una clase player pickables y que suceda lo mismo
-                _playerPowerUps.TryEnablePowerUp(powerUp.PowerUpType);                
+                _playerCollisionHandler.HandlePowerUpsCollision(powerUp.Data);              
             }
         }
 

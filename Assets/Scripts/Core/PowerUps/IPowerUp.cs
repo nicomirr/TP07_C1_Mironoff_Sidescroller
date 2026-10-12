@@ -1,10 +1,10 @@
+using Game.Data;
 
-namespace Game.Core
+namespace Game.PowerUp
 {
     public interface IPowerUp
     {
-        public PowerUpType PowerUpType { get; }
-        public AudioCategory AudioCategory { get; }
+        public PowerUpDataSo Data { get; }
     }
 
 }

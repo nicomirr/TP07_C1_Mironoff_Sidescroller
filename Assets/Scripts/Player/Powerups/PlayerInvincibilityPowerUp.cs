@@ -7,21 +7,26 @@ namespace Game.Player
 {
     public class PlayerInvincibilityPowerUp : PlayerPowerUp
     {
+        private InvincibilityPowDataSo _data;
+
+        protected SpriteRenderer _spriteRenderer;
+        protected PlayerSpriteFlicker _spriteFlicker;
+
         public PlayerInvincibilityPowerUp(ICoroutineRunner coroutineRunner, IPlayerStateChanger stateChanger,
-            PlayerSpriteFlicker spriteFlicker, SpriteRenderer spriteRenderer, PowDataSo data)
+            PlayerSpriteFlicker spriteFlicker, SpriteRenderer spriteRenderer)
         {
             _coroutineRunner = coroutineRunner;
             _playerStateChanger = stateChanger;
-
-            _data = data;
 
             _spriteFlicker = spriteFlicker;
             _spriteRenderer = spriteRenderer;
         }
 
-        public override bool TryEnablePowerUp()
+        public override bool EnablePowerUp(PowerUpDataSo data)
         {
             if (!_playerStateChanger.TryChangeState(PlayerState.Invincible)) return false;
+
+            _data = data as InvincibilityPowDataSo;
 
             _coroutineRunner.RunCoroutine(InvincibilityRoutine());
 

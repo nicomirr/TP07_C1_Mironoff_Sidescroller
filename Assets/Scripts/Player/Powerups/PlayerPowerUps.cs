@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game.Core;
+using Game.Data;
 
 namespace Game.Player
 {
@@ -12,9 +13,9 @@ namespace Game.Player
             _powerUps[powerUpType] = powerUp;
         }
 
-        public void TryEnablePowerUp(PowerUpType powerUpType)
+        public void EnablePowerUp(PowerUpDataSo data)
         {
-            bool powerUpEnabled = _powerUps[powerUpType].TryEnablePowerUp();
+            _powerUps[data.PowerUpType].EnablePowerUp(data);
         }
                 
     }

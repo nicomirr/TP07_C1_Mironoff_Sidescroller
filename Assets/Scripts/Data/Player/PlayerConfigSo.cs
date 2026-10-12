@@ -21,9 +21,6 @@ namespace Game.Data
         [SerializeField] private float _throwCooldown;
         public float ThrowCooldown => _throwCooldown;
 
-        [SerializeField] private PowerUpsDataSo _powerUpsData;
-        public PowerUpsDataSo PowerUpsData => _powerUpsData;
-
         [SerializeField] private AudioConfigSo _audioConfigData;
         public AudioConfigSo AudioConfigData => _audioConfigData;
 
