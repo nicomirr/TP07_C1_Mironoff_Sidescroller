@@ -97,14 +97,11 @@ namespace Game.Player
             PlayerPickableEffects playerPickableEffects = new PlayerPickableEffects();
             playerPickableEffects.AddPickable(PickableType.HealthPotion, playerHealthEffect);
 
-            _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler, playerPowerUps, playerPickableEffects);
-
-            
+            _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler, playerPowerUps, playerPickableEffects);            
         }
 
         private void OnEnable()
         {
-
             _playerAnimationEvents.OnThrowFinished += HandleThrowFinished;
 
             _playerGroundCheck.OnJustLanded += HandleLand;
@@ -213,6 +210,8 @@ namespace Game.Player
 
         private void HandleDeath()
         {
+            //REFACTORIZAR
+
             if (_playerHealth.CurrentHealth > 0) return;
 
             PlayerDoll doll = Instantiate(_doll);
@@ -223,8 +222,6 @@ namespace Game.Player
                 doll.SetRightAnimation();
 
             this.gameObject.SetActive(false);
-
-
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

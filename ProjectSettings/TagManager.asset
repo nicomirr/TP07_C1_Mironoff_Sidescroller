@@ -53,5 +53,8 @@ TagManager:
   - name: Enemy
     uniqueID: 2765457765
     locked: 0
+  - name: Collisions
+    uniqueID: 1910738629
+    locked: 0
   m_RenderingLayers:
   - Default

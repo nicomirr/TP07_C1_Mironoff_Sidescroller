@@ -1,5 +1,4 @@
 using UnityEngine;
-using Game.Data;
 using Game.Core;
 using Game.Common;
 using Game.UI;
@@ -10,18 +9,15 @@ namespace Game.Enemy
     {
         [SerializeField] private UIHealth _UIHealth;
 
-        [SerializeField] private EnemyDataSo _data;
-        public float Damage => _data.ContactDamage;
+        protected float _contactDamage;
+        public float ContactDamage => _contactDamage;
 
-        private EnemyMovement _enemyMovement;
-        private Health _health;
+        protected Health _health;
         private EnemyDeath _enemyDeath;
 
 
-        private void Awake()
-        {
-            _enemyMovement = EnemyBehaviourFactory.CreateMovement(_data.MovementData.MovementType, _data.MovementData.MovementSpeed, GetComponent<Rigidbody2D>());
-            _health = new Health(_data.HealthData);
+        protected virtual void Awake()
+        {            
             _enemyDeath = new EnemyDeath(this.gameObject);
         }
 
@@ -29,11 +25,6 @@ namespace Game.Enemy
         {
             _health.OnHealthChanged += _UIHealth.UpdateHealth;
             _health.OnHealthChanged += _enemyDeath.HandleDeath;
-        }
-
-        private void FixedUpdate()
-        {
-            _enemyMovement.Move();
         }
 
         private void OnDisable()
@@ -47,10 +38,8 @@ namespace Game.Enemy
             if (!collision.gameObject.TryGetComponent(out IDamageProvider damageProvider))
                 return;
 
-            _health.TakeDamage(damageProvider.Damage);
+            _health.TakeDamage(damageProvider.ContactDamage);
         }
-
     }
-
 }
 

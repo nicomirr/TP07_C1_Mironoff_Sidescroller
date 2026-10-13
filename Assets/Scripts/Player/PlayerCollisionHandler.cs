@@ -39,7 +39,7 @@ namespace Game.Player
                 return;
             }
 
-            _damageHandler.TryDamage(damageProvider.Damage, damageDirection);
+            _damageHandler.TryDamage(damageProvider.ContactDamage, damageDirection);
         }
 
         private void DestroyDamageCollided(GameObject enemy)

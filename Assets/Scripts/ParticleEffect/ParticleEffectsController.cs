@@ -3,7 +3,7 @@ using Game.Core;
 using Game.Data;
 
 namespace Game.ParticleEffects
-{
+{    
     public class ParticleEffectsController : MonoBehaviour
     {
         [SerializeField] private ParticleEffectFactoryDataSo _data;

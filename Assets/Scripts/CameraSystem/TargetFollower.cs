@@ -1,7 +1,8 @@
 using UnityEngine;
 
 namespace Game.CameraSystem
-{    
+{
+    [ExecuteAlways]
     public class TargetFollower : MonoBehaviour
     {
         [SerializeField] private Transform _target;

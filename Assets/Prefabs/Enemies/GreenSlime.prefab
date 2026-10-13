@@ -229,7 +229,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1529509531
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2717109248421698657, guid: 501409692c313174ca2c2a987d202c95, type: 3}
@@ -273,9 +273,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6360588649302235488}
-  - component: {fileID: 5533630767850840099}
-  - component: {fileID: 1806318119660556057}
+  - component: {fileID: 8759139458873397667}
   - component: {fileID: 7411371912821241212}
+  - component: {fileID: 3156321103227754525}
   m_Layer: 10
   m_Name: GreenSlime
   m_TagString: Untagged
@@ -300,7 +300,7 @@ Transform:
   - {fileID: 2026397672440680592}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5533630767850840099
+--- !u!114 &8759139458873397667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,12 +309,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861188248208992638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b223cf77dafd0534a8f8ce0a77b63002, type: 3}
+  m_Script: {fileID: 11500000, guid: 16e39bf8a177a204bbe923cc5fecd2b9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemy.GreenSlimeController
   _UIHealth: {fileID: 211559693821625977}
-  _data: {fileID: 11400000, guid: 87ae1e82c3cbbe44ab5140004c0fe5c8, type: 2}
---- !u!61 &1806318119660556057
+  _slimeData: {fileID: 11400000, guid: 87ae1e82c3cbbe44ab5140004c0fe5c8, type: 2}
+  _targetDetectorData: {fileID: 11400000, guid: ff57aaa661df95147bd6b986a15d1355, type: 2}
+--- !u!50 &7411371912821241212
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861188248208992638}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 5
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!61 &3156321103227754525
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -348,7 +376,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0021207333, y: -0.061337233}
+  m_Offset: {x: -0.0024175644, y: -0.041092277}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -358,35 +386,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.6479888, y: 0.34946728}
+  m_Size: {x: 0.65675926, y: 0.37636542}
   m_EdgeRadius: 0
---- !u!50 &7411371912821241212
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4861188248208992638}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 5
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &6265735260099194129
 GameObject:
   m_ObjectHideFlags: 0

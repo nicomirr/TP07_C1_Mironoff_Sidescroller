@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0f4b58ee5c0084d8a1f512a4f118bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 52fa833c0b4d0364fbb3fc2379a28c76, type: 3}
   m_Name: GreenSlimeData
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyDataSo
-  _movementData: {fileID: 11400000, guid: ddffd8072d5ff7a46a62f9cdcfa09991, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.GreenSlimeDataSo
   _healthData: {fileID: 11400000, guid: 8dd392d5cc5f56d4eb7435ea72df150d, type: 2}
   _contactDamage: 1
+  _movementData: {fileID: 11400000, guid: ddffd8072d5ff7a46a62f9cdcfa09991, type: 2}
