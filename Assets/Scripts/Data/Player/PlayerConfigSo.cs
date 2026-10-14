@@ -48,6 +48,9 @@ namespace Game.Data
         [SerializeField] private LayerMask _groundLayer;
         public LayerMask GroundLayer => _groundLayer;
 
+        [SerializeField] private Vector2 _groundCheckSize;
+        public Vector2 GroundCheckSize => _groundCheckSize;
+
     }
 
 }

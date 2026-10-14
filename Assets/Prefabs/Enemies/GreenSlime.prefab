@@ -178,7 +178,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6360588649302235488}
@@ -291,7 +291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4861188248208992638}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -3.17599, y: -3.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -299,7 +299,7 @@ Transform:
   - {fileID: 5000428993937880552}
   - {fileID: 2026397672440680592}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &8759139458873397667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Enemy.GreenSlimeController
   _UIHealth: {fileID: 211559693821625977}
   _slimeData: {fileID: 11400000, guid: 87ae1e82c3cbbe44ab5140004c0fe5c8, type: 2}
-  _targetDetectorData: {fileID: 11400000, guid: ff57aaa661df95147bd6b986a15d1355, type: 2}
+  _targetDetectorData: {fileID: 11400000, guid: 44058d4340d7862478ab6a53b9f7b883, type: 2}
 --- !u!50 &7411371912821241212
 Rigidbody2D:
   serializedVersion: 5

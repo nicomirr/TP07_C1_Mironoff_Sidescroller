@@ -1,6 +1,5 @@
 using UnityEngine;
 using Game.Audio;
-using Game.Core;
 using Game.Data;
 using Game.ParticleEffects;
 
@@ -17,7 +16,10 @@ namespace Game.Player
 
         private float _coyoteTimer;
 
-        public bool CanJump => _coyoteTimer > 0;
+        private bool _jumpUsed;
+        public bool JumpUsed => _jumpUsed;
+
+        public bool CanJump => _coyoteTimer > 0 && !_jumpUsed;
 
         public PlayerJump(Rigidbody2D rb, PlayerConfigSo data)
         {
@@ -34,10 +36,12 @@ namespace Game.Player
         }
 
         public void Jump()
-        {
+        {            
             _coyoteTimer = 0;
 
             _rb.AddForce(Vector2.up * _data.JumpForce, ForceMode2D.Impulse);
+
+            _jumpUsed = true;
         }
 
         public void CutJump()
@@ -46,7 +50,12 @@ namespace Game.Player
                 return;
 
             _rb.linearVelocityY *= _data.JumpCutMultiplier;
-        }        
+        }     
+        
+        public void ResetJump()
+        {
+            _jumpUsed = false;
+        }
     }
 }
 

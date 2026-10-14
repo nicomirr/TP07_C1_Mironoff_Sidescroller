@@ -33,7 +33,7 @@ namespace Game.Enemy
             _health.OnHealthChanged -= _enemyDeath.HandleDeath;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
             if (!collision.gameObject.TryGetComponent(out IDamageProvider damageProvider))
                 return;

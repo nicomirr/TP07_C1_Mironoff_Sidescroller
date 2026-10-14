@@ -7,6 +7,7 @@ public class PlayerGroundCheck
     private readonly Transform _groundCheck;
     private readonly float _groundCheckDistance;
     private readonly LayerMask _groundLayer;
+    private readonly Vector2 _groundCheckSize;
 
     public event Action OnJustLanded;
 
@@ -19,6 +20,7 @@ public class PlayerGroundCheck
         _groundCheck = groundCheck;
         _groundCheckDistance = data.groundCheckDistance;
         _groundLayer = data.GroundLayer;
+        _groundCheckSize = data.GroundCheckSize;
 
         _isGrounded = true;
         _isGroundedPreviousState = _isGrounded;
@@ -26,7 +28,7 @@ public class PlayerGroundCheck
 
     public void UpdateGroundedState()
     {
-        _isGrounded = Physics2D.Raycast(_groundCheck.position,Vector3.down,
+        _isGrounded = Physics2D.BoxCast(_groundCheck.position,_groundCheckSize, 0, Vector3.down,
             _groundCheckDistance, _groundLayer);
 
         if (_isGrounded != _isGroundedPreviousState)

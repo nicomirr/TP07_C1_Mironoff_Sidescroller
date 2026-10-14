@@ -6,16 +6,20 @@ using Game.Core;
 using Game.Data;
 using Game.Marker;
 using Game.Throwables;
-using Game.Common;
 using Game.UI;
 using Game.PowerUp;
 using Game.Pickables;
+using Game.Common;
 
 namespace Game.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour, ICoroutineRunner
     {
+        [SerializeField] private bool JUMP_AVAILABLE;
+        [SerializeField] private bool IS_GROUNDED;
+
+
         [SerializeField] private PlayerDoll _doll;
 
         [SerializeField] private PlayerConfigSo _data;
@@ -31,7 +35,7 @@ namespace Game.Player
         private PlayerInputs _playerInputs;
         private PlayerStateMachine _playerFsm;
         private PlayerAnimations _playerAnimations;
-        private PlayerFacing _playerFacing;
+        private Facing _playerFacing;
         private PlayerMovement _playerMovement;
         private PlayerJump _playerJump;
         private PlayerGroundCheck _playerGroundCheck;
@@ -56,7 +60,7 @@ namespace Game.Player
 
             _playerAnimations = new PlayerAnimations(animationHandler);
 
-            _playerFacing = new PlayerFacing(this.transform);
+            _playerFacing = new Facing(this.transform, true);
 
             _playerMovement = new PlayerMovement(_rb, _data);
 
@@ -116,6 +120,9 @@ namespace Game.Player
 
         private void Update()
         {
+            JUMP_AVAILABLE = _playerJump.CanJump;
+            IS_GROUNDED = _playerGroundCheck.IsGrounded;
+
             HandlePlayerDirection();
 
             _playerJump.UpdateCoyoteTime(_playerGroundCheck.IsGrounded);
@@ -145,7 +152,7 @@ namespace Game.Player
 
         private void HandlePlayerDirection()
         {
-            _playerFacing.FlipPlayer(_playerInputs.Direction);
+            _playerFacing.Flip(_playerInputs.Direction);
             _playerAnimations.SetPlayerDirection(_playerFacing.IsFacingRight ? 1f : -1f);
         }
 
@@ -168,7 +175,8 @@ namespace Game.Player
 
         private void HandleLand()
         {
-            _playerAnimations.SetJumpAnimation(false);        
+            _playerAnimations.SetJumpAnimation(false);
+            _playerJump.ResetJump();
         }
 
         private void HandleThrow()
