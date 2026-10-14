@@ -17,7 +17,7 @@ TagManager:
   - PixelPresentation
   - Enemy
   - Doll
-  - 
+  - DirectionChanger
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tree
+    uniqueID: 3796009039
     locked: 0
   - name: Pickable
     uniqueID: 4065133127

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4960f5f27c777f3408478d39d7c5f8a1, type: 3}
   m_Name: DetectionShort
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTargetDetectorDataSo
-  _detectionRadius: 5
+  _detectionRadius: 8
   _targetLayer:
     serializedVersion: 2
     m_Bits: 128

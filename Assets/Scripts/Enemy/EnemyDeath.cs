@@ -16,8 +16,6 @@ public class EnemyDeath
         if (currentHealth > 0) return;
 
         CommandBus.Send(new PlayParticleEffectCommand(ParticleEffectType.GreenSlimeDeath, _enemy.transform.position));
-        _enemy.SetActive(false);
-        
-    }
-    
+        _enemy.SetActive(false);        
+    }    
 }

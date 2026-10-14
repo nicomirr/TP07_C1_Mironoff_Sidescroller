@@ -2,10 +2,11 @@ using UnityEngine;
 
 namespace Game.Data
 {
-    [CreateAssetMenu(fileName = "GreenSlimeDataSo", menuName = "Scriptable Objects/GreenSlimeDataSo")]
-    public class GreenSlimeDataSo : EnemyDataSo
-{
+    [CreateAssetMenu(fileName = "EnemyLocomotionDataSo", menuName = "Scriptable Objects/EnemyLocomotionDataSo")]
+    public class EnemyLocomotionDataSo : ScriptableObject
+    {
         [SerializeField] private EnemyMovementDataSo _movementData;
         public EnemyMovementDataSo MovementData => _movementData;
     }
+
 }

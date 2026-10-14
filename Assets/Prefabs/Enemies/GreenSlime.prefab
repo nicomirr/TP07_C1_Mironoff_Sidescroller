@@ -229,7 +229,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1529509531
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2717109248421698657, guid: 501409692c313174ca2c2a987d202c95, type: 3}
@@ -273,7 +273,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6360588649302235488}
-  - component: {fileID: 8759139458873397667}
+  - component: {fileID: 3293959911585486705}
+  - component: {fileID: 1223052901621162520}
+  - component: {fileID: 5833122581912496869}
+  - component: {fileID: 1969659330898108649}
+  - component: {fileID: 134923721342138804}
   - component: {fileID: 7411371912821241212}
   - component: {fileID: 3156321103227754525}
   m_Layer: 10
@@ -300,7 +304,7 @@ Transform:
   - {fileID: 2026397672440680592}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &8759139458873397667
+--- !u!114 &3293959911585486705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,12 +313,61 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861188248208992638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e39bf8a177a204bbe923cc5fecd2b9, type: 3}
+  m_Script: {fileID: 11500000, guid: cbc3a08a3258a284b98350bc489e3cd6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemy.GreenSlimeController
-  _UIHealth: {fileID: 211559693821625977}
-  _slimeData: {fileID: 11400000, guid: 87ae1e82c3cbbe44ab5140004c0fe5c8, type: 2}
-  _targetDetectorData: {fileID: 11400000, guid: 44058d4340d7862478ab6a53b9f7b883, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
+--- !u!114 &1223052901621162520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861188248208992638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cd4e702a48d334e8ed8b3639bbcf78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyLocomotionController
+  _data: {fileID: 11400000, guid: c52a3a4dbc0f3d243af2b03c51a0c6cc, type: 2}
+--- !u!114 &5833122581912496869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861188248208992638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d4229e6f16b1a4fbaba664b60854a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCombatController
+  _data: {fileID: 11400000, guid: 7374c87a1d31f4f4b92c9413e946beeb, type: 2}
+--- !u!114 &1969659330898108649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861188248208992638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10454a2754a9f69489853bee5ce0b706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemy.EnemyAwarenessController
+  _data: {fileID: 11400000, guid: 660c6ae24984e614b8834c1003f9075e, type: 2}
+--- !u!114 &134923721342138804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861188248208992638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475f9911da522214e9b03efbac49eb7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Enemy.EnemyHealthController
+  _data: {fileID: 11400000, guid: 8dd392d5cc5f56d4eb7435ea72df150d, type: 2}
 --- !u!50 &7411371912821241212
 Rigidbody2D:
   serializedVersion: 5
@@ -376,7 +429,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0024175644, y: -0.041092277}
+  m_Offset: {x: -0.0024166107, y: -0.082671285}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -386,7 +439,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.65675926, y: 0.37636542}
+  m_Size: {x: 0.87369156, y: 0.45952344}
   m_EdgeRadius: 0
 --- !u!1 &6265735260099194129
 GameObject:

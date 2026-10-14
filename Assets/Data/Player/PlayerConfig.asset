@@ -17,7 +17,6 @@ MonoBehaviour:
   _throwablesFactoryData: {fileID: 11400000, guid: 4678ac8895a3f33468ec704bfd1b5d4a, type: 2}
   _initialThrowableType: 1
   _throwCooldown: 0.35
-  _powerUpsData: {fileID: 11400000, guid: e06645f74d5f5044d8b32a26654ad9ba, type: 2}
   _audioConfigData: {fileID: 11400000, guid: 3048f0c2a3b397f42899fddf294278ed, type: 2}
   _damageFlickerData: {fileID: 11400000, guid: 67981812400101e469268aa0f9e0afd3, type: 2}
   _healthData: {fileID: 11400000, guid: c12728ee91ed5b045a7d5a6ab3ac4c2e, type: 2}
@@ -25,7 +24,8 @@ MonoBehaviour:
   _gravityData: {fileID: 11400000, guid: 423831a7d47436544ae32daf101e80e7, type: 2}
   _movementSpeed: 8
   _jumpData: {fileID: 11400000, guid: 8aaac7ef7ca02a745b5719f03def6ff9, type: 2}
-  _groundCheckDistance: 0.2
+  _groundCheckDistance: 0.04
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  _groundCheckSize: {x: 0.55, y: 0.04}

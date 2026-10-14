@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274839ff630d70a42af13ff2007a5f68, type: 3}
   m_Name: GreenSlimeMovementData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyMovementDataSo
-  _movementSpeed: 3
+  _movementType: 1
+  _movementSpeed: 3.5

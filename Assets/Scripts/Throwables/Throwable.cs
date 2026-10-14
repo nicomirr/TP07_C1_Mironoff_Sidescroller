@@ -8,7 +8,7 @@ namespace Game.Throwables
     public class Throwable : MonoBehaviour, IDamageProvider
     {
         [SerializeField] private ThrowableDataSo _data;
-        public float ContactDamage => _data.Damage;
+        public float Damage => _data.Damage;
 
         private Rigidbody2D _rb;
         private Collider2D _collider;

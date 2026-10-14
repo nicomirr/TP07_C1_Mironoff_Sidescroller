@@ -1,17 +1,17 @@
 using UnityEngine;
 
-namespace Game.Common
+namespace Game.Player
 {
-    public class Facing
+    public class PlayerFacing
     {
-        private Transform _transform;
+        private Transform _ownerTransform;
 
         private bool _isFacingRight;
         public bool IsFacingRight => _isFacingRight;
 
-        public Facing(Transform playerTransform, bool isFacingRight)
+        public PlayerFacing(Transform ownerTransform, bool isFacingRight)
         {
-            _transform = playerTransform;
+            _ownerTransform = ownerTransform;
             _isFacingRight = isFacingRight;
         }
 
@@ -21,7 +21,7 @@ namespace Game.Common
 
             _isFacingRight = direction > 0;
 
-            _transform.right = _isFacingRight ? Vector3.right : Vector3.left;
+            _ownerTransform.right = _isFacingRight ? Vector3.right : Vector3.left;
         }
     }
 }

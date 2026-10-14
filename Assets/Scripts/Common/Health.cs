@@ -4,7 +4,7 @@ using Game.Data;
 
 namespace Game.Common
 {
-    public class Health
+    public class Health  
     {
         public event Action<float, float> OnHealthChanged;
 
@@ -31,5 +31,4 @@ namespace Game.Common
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
         }
     }
-
 }

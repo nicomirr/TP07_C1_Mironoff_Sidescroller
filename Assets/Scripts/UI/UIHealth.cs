@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Game.Data;
+using Game.Common;
 
 namespace Game.UI
 {
@@ -9,7 +10,11 @@ namespace Game.UI
     {
         [SerializeField] private UIHealthDataSo _data;
 
+        [SerializeField] private GameObject _healthChangedNotifierMonobehaviour;
+
         [SerializeField] private Image _fillImage;
+
+        private IHealthChangedNotifier _healthChangeNotifier;
 
         private CanvasGroup _canvasGroup;
 
@@ -18,13 +23,25 @@ namespace Game.UI
 
         private void Awake()
         {
+            _healthChangeNotifier = _healthChangedNotifierMonobehaviour.GetComponent<IHealthChangedNotifier>();
+
             _canvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        private void OnEnable()
+        {
+            _healthChangeNotifier.OnHealthChanged += UpdateHealth;
         }
 
         private void Start()
         {
             _canvasGroup.alpha = 0;
             _fillImage.fillAmount = 1;
+        }
+
+        private void OnDisable()
+        {
+            _healthChangeNotifier.OnHealthChanged -= UpdateHealth;
         }
 
         public void UpdateHealth(float currentHealth, float maxHealth)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using Game.AnimationSystem;
 using Game.Audio;
@@ -6,7 +7,6 @@ using Game.Core;
 using Game.Data;
 using Game.Marker;
 using Game.Throwables;
-using Game.UI;
 using Game.PowerUp;
 using Game.Pickables;
 using Game.Common;
@@ -14,7 +14,7 @@ using Game.Common;
 namespace Game.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlayerController : MonoBehaviour, ICoroutineRunner
+    public class PlayerController : MonoBehaviour, ICoroutineRunner, IHealthChangedNotifier
     {
         [SerializeField] private bool JUMP_AVAILABLE;
         [SerializeField] private bool IS_GROUNDED;
@@ -23,8 +23,6 @@ namespace Game.Player
         [SerializeField] private PlayerDoll _doll;
 
         [SerializeField] private PlayerConfigSo _data;
-
-        [SerializeField] private UIHealth _UIHealth;
 
         [SerializeField] private Transform _throwablesParent;
 
@@ -35,7 +33,7 @@ namespace Game.Player
         private PlayerInputs _playerInputs;
         private PlayerStateMachine _playerFsm;
         private PlayerAnimations _playerAnimations;
-        private Facing _playerFacing;
+        private PlayerFacing _playerFacing;
         private PlayerMovement _playerMovement;
         private PlayerJump _playerJump;
         private PlayerGroundCheck _playerGroundCheck;
@@ -44,6 +42,7 @@ namespace Game.Player
         private PlayerHealth _playerHealth;
         private PlayerCollisionHandler _playerCollisionHandler;
 
+        public event Action<float, float> OnHealthChanged;
 
         private void Awake()
         {
@@ -60,7 +59,7 @@ namespace Game.Player
 
             _playerAnimations = new PlayerAnimations(animationHandler);
 
-            _playerFacing = new Facing(this.transform, true);
+            _playerFacing = new PlayerFacing(this.transform, true);
 
             _playerMovement = new PlayerMovement(_rb, _data);
 
@@ -110,7 +109,7 @@ namespace Game.Player
 
             _playerGroundCheck.OnJustLanded += HandleLand;
 
-            _playerHealth.OnHealthChanged += _UIHealth.UpdateHealth;
+            _playerHealth.OnHealthChanged += RaiseHealthChanged;
         }
 
         private void FixedUpdate()
@@ -142,7 +141,7 @@ namespace Game.Player
 
             _playerGroundCheck.OnJustLanded -= HandleLand;
 
-            _playerHealth.OnHealthChanged -= _UIHealth.UpdateHealth;
+            _playerHealth.OnHealthChanged -= RaiseHealthChanged;
         }
 
         private void OnDestroy()
@@ -252,6 +251,11 @@ namespace Game.Player
             {
                 _playerCollisionHandler.HandlePowerUpsCollision(powerUp.Data);              
             }
+        }
+
+        private void RaiseHealthChanged(float currentHealth, float maxHealth)
+        {
+            OnHealthChanged.Invoke(currentHealth, maxHealth);
         }
 
         public Coroutine RunCoroutine(IEnumerator routine)
