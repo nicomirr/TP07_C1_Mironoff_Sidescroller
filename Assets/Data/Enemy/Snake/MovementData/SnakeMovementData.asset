@@ -15,7 +15,7 @@ MonoBehaviour:
   _movementType: 2
   _movementSpeed: 4
   _speedMultiplier: 2
-  _minDelayTime: 2
+  _minDelayTime: 1.5
   _maxDelayTime: 2.5
   _waitTime: 0.5
   _dashTime: 2

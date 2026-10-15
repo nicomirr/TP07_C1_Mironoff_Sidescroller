@@ -20,6 +20,8 @@ namespace Game.Player
 
         public void ApplyKnockback(float direction)
         {
+            _rb.linearVelocityY = 0f;
+
             Vector2 force = new Vector2(Mathf.Sign(direction) * _horizontalKnockbackForce, _verticalKnockbackForce);
             _rb.AddForce(force, ForceMode2D.Impulse);
         }

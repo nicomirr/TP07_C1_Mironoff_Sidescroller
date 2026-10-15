@@ -38,10 +38,7 @@ namespace Game.Player
         public void Jump()
         {            
             _coyoteTimer = 0;
-
-            if (_rb.linearVelocityY > 0)
-                _rb.linearVelocityY = 0;
-
+                        
             _rb.AddForce(Vector2.up * _data.JumpForce, ForceMode2D.Impulse);
 
             _jumpUsed = true;
