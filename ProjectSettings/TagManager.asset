@@ -41,6 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Boat
+    uniqueID: 2574937973
+    locked: 0
+  - name: Water
+    uniqueID: 2615838537
+    locked: 0
+  - name: Ground
+    uniqueID: 670776247
+    locked: 0
   - name: Tree
     uniqueID: 3796009039
     locked: 0
@@ -52,6 +61,9 @@ TagManager:
     locked: 0
   - name: Throwable
     uniqueID: 1324166857
+    locked: 0
+  - name: TopBoat
+    uniqueID: 3269010505
     locked: 0
   - name: Enemy
     uniqueID: 2765457765

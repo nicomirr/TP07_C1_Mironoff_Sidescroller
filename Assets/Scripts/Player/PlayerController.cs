@@ -237,7 +237,20 @@ namespace Game.Player
             {
                 float damageDirection = this.transform.position.x - collision.transform.position.x;
 
-                _playerCollisionHandler.HandleDamageCollision(collision.gameObject, damageProvider, damageDirection);                
+                _playerCollisionHandler.HandleDamageCollision(collision.gameObject, damageProvider, damageDirection);
+            }
+
+            if (collision.gameObject.TryGetComponent(out IHorizontalVelocityProvider velocityProvider))
+            {
+                _playerMovement.SetVelocityProvider(velocityProvider);
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.TryGetComponent(out IHorizontalVelocityProvider _))
+            {
+                _playerMovement.ResetVelocityProvider();
             }
         }
 
