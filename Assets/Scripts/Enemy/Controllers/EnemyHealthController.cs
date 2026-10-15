@@ -1,8 +1,8 @@
 using UnityEngine;
 using System;
-using Game.Common;
 using Game.Core;
 using Game.Data;
+using Game.Common;
 
 namespace Game.Enemy
 {
@@ -18,7 +18,7 @@ namespace Game.Enemy
         private void Awake()
         {
             _health = new Health(_data);
-            _death = new EnemyDeath(this.gameObject);
+            _death = new EnemyDeath(_data, this.gameObject);
         }
 
         private void OnEnable()

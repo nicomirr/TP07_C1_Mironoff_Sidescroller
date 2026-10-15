@@ -1,4 +1,5 @@
 using UnityEngine;
+using Game.Core;
 
 namespace Game.Data
 {
@@ -7,6 +8,9 @@ namespace Game.Data
     {
         [SerializeField] private float _maxHealth;
         public float MaxHealth => _maxHealth;
+
+        [SerializeField] private ParticleEffectType effectType;
+        public ParticleEffectType EffectType => effectType;
     }
 }
 

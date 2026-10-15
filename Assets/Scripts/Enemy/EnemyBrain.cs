@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace Game.Enemy
 {
+    [RequireComponent(typeof(EnemyLocomotionController))]
+    [RequireComponent(typeof(EnemyCombatController))]
+    [RequireComponent(typeof(EnemyAwarenessController))]
+
     public class EnemyBrain : MonoBehaviour
     {
         private EnemyLocomotionController _locomotion;

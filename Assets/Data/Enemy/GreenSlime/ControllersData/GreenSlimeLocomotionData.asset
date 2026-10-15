@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51775854b6d6efe4da38635043dcedd8, type: 3}
   m_Name: GreenSlimeLocomotionData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyLocomotionDataSo
-  _movementData: {fileID: 11400000, guid: ddffd8072d5ff7a46a62f9cdcfa09991, type: 2}
+  _movementData: {fileID: 11400000, guid: c0c7013a98f64194e914e090f3bd7e4f, type: 2}

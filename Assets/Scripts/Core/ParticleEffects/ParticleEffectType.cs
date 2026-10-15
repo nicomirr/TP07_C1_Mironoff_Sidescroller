@@ -5,6 +5,7 @@ namespace Game.Core
         None = 0,
         RockImpact,
         GreenSlimeDeath,
-        End = 3
+        SnakeDeath,
+        End = 4
     }
 }

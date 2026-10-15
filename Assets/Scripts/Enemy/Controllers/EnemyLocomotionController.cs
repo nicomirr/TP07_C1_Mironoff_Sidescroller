@@ -1,11 +1,13 @@
 #nullable enable
 
 using UnityEngine;
+using System.Collections;
 using Game.Data;
+using Game.Core;
 
 namespace Game.Enemy
 {
-    public class EnemyLocomotionController : MonoBehaviour
+    public class EnemyLocomotionController : MonoBehaviour, ICoroutineRunner, ICoroutineStopper
     {
         [SerializeField] private EnemyLocomotionDataSo _data;
 
@@ -16,9 +18,15 @@ namespace Game.Enemy
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
-            _movement = EnemyLocomotionFactory.CreateMovement(_data.MovementData, rb, this.transform);
+            _movement = EnemyLocomotionFactory.CreateMovement(_data.MovementData, rb, this.transform, this, this);
 
             _facing = new EnemyFacing(this.transform);
+        }
+
+        private void OnDisable()
+        {
+            if (_movement is IDisableable disableable)            
+                disableable.Disable();            
         }
 
         public void Move()
@@ -33,7 +41,16 @@ namespace Game.Enemy
                 _facing.Flip();
             }
         }
-        
+
+        public Coroutine RunCoroutine(IEnumerator routine)
+        {
+            return StartCoroutine(routine);
+        }
+
+        public void FinalizeCoroutine(Coroutine routine)
+        {
+            StopCoroutine(routine);
+        }
     }
 }
 

@@ -4,6 +4,7 @@ namespace Game.Core
     {
         None = 0,
         Forward,
+        ForwardDash,
         End = 2
     }
 }

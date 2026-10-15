@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d5d572177db274384372952d749d4c, type: 3}
+  m_Name: SnakeDeath
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.ParticleEffectDataSo
+  _particleEffectType: 3
+  _particleSystemPrefab: {fileID: 4755681275756482203, guid: 38efe7e23bf05e44e92b930a17db3c07, type: 3}
+  _poolSize: 4

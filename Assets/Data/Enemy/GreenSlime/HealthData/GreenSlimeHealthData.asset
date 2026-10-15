@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GreenSlimeHealthData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.HealthDataSo
   _maxHealth: 2
+  effectType: 2

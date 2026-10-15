@@ -15,3 +15,4 @@ MonoBehaviour:
   _particleEffectPrefabs:
   - {fileID: 11400000, guid: 850323774376fdc46b4e72c40777adeb, type: 2}
   - {fileID: 11400000, guid: b9f699cbad1f3ca4c8b10adbd7c52871, type: 2}
+  - {fileID: 11400000, guid: 3ef3933d617834f41ae07758efc5375c, type: 2}

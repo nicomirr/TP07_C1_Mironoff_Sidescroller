@@ -1,8 +1,6 @@
-#nullable enable
-
+using UnityEngine;
 using Game.Core;
 using Game.Data;
-using UnityEngine;
 
 namespace Game.Enemy
 {

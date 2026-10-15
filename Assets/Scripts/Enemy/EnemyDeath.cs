@@ -1,13 +1,16 @@
 using UnityEngine;
 using Game.Core;
+using Game.Data;
 using Game.ParticleEffects;
 
 public class EnemyDeath
 {
     private readonly GameObject _enemy;
+    private readonly ParticleEffectType _effectType;
 
-    public EnemyDeath(GameObject enemy)
+    public EnemyDeath(HealthDataSo data, GameObject enemy)
     {
+        _effectType = data.EffectType;
         _enemy = enemy;
     }
 
@@ -15,7 +18,7 @@ public class EnemyDeath
     {
         if (currentHealth > 0) return;
 
-        CommandBus.Send(new PlayParticleEffectCommand(ParticleEffectType.GreenSlimeDeath, _enemy.transform.position));
+        CommandBus.Send(new PlayParticleEffectCommand(_effectType, _enemy.transform.position));
         _enemy.SetActive(false);        
     }    
 }
