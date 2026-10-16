@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1324166857
-  m_SortingLayer: 2
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 4259b5f01e8d14f41a388a568a1205ce, type: 3}
@@ -100,6 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2091669191435026911}
+  - component: {fileID: 5967619022400844115}
   - component: {fileID: 3599481631436360808}
   - component: {fileID: 841795024597008906}
   - component: {fileID: 7890225675647537659}
@@ -126,6 +127,18 @@ Transform:
   - {fileID: 1670882918735185963}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5967619022400844115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193037893622625558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2846f9fcac98984ba18b603885b80da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Marker.ThrowableMarker
 --- !u!114 &3599481631436360808
 MonoBehaviour:
   m_ObjectHideFlags: 0
