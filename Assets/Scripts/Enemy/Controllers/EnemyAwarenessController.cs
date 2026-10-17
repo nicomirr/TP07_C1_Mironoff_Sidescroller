@@ -18,6 +18,9 @@ namespace Game.Enemy
              return _targetDetector.HasDetectedTarget();
         }
 
+        public void ResetTargetDetection()
+        {
+            _targetDetector.ResetTargetDetection();
+        }
     }
-
 }

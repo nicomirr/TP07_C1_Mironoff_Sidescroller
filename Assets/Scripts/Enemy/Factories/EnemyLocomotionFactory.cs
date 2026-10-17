@@ -18,6 +18,15 @@ namespace Game.Enemy
                 _ => null
             };
         }
+
+        public static EnemyJump? CreateJump(EnemyJumpDataSo data, Rigidbody2D rb, Transform enemyTransform)
+        {
+            return data.JumpType switch
+            {
+                EnemyJumpType.ParabolicJump => new EnemyParabolicJump((EnemyParabolicJumpDataSo)data, rb, enemyTransform),
+                _ => null
+            };
+        }
     }
 
 }

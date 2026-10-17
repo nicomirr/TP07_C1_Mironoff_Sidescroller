@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SnakeLocomotionData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyLocomotionDataSo
   _movementData: {fileID: 11400000, guid: 9a63d874851f23642b115110d4a8f212, type: 2}
+  _jumpData: {fileID: 11400000, guid: 83bf89049d3b3bc45a45a3e7259bf3b5, type: 2}

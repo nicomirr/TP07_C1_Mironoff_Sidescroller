@@ -229,7 +229,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1529509531
-  m_SortingLayer: 5
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2717109248421698657, guid: 501409692c313174ca2c2a987d202c95, type: 3}
@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc3a08a3258a284b98350bc489e3cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
+  _data: {fileID: 11400000, guid: 40d270c8ef3eb824bb321406a765ac6b, type: 2}
 --- !u!114 &1223052901621162520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIEnemyHealth
   _data: {fileID: 11400000, guid: f5c5a8ddad5702143bb9e31851fc6fd8, type: 2}
+  _healthChangedNotifierMonobehaviour: {fileID: 0}
   _fillImage: {fileID: 8322534684185116846}
 --- !u!225 &8643486477937977985
 CanvasGroup:

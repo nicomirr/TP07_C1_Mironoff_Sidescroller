@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4828469883c4f43abd92650bf23b49, type: 3}
+  m_Name: FishTransitions
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStateMachineTransitionsSo
+  _fromIdleTransition: 3
+  _fromJumpTransition: 4
+  _waitTransitionData: {fileID: 11400000, guid: 99610d72370b9ca409791853b7f202a7, type: 2}

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ab9c56f1903b84f864678f24eda7eb, type: 3}
   m_Name: HarborBellData
   m_EditorClassIdentifier: Assembly-CSharp::HarborBellDataSo
+  _bellAnimationTrigger: BellHit

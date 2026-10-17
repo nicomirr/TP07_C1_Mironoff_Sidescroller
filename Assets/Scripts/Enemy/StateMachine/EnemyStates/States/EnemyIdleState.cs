@@ -1,4 +1,4 @@
-using UnityEngine;
+using Game.Core;
 
 namespace Game.Enemy
 {
@@ -8,10 +8,13 @@ namespace Game.Enemy
 
         private readonly EnemyAwarenessController _awareness;
 
-        public EnemyIdleState(EnemyStateMachine fsm, EnemyAwarenessController awareness)
+        private readonly EnemyStateType _nextState;
+
+        public EnemyIdleState(EnemyStateMachine fsm, EnemyAwarenessController awareness, EnemyStateType nextState)
         {
             _fsm = fsm;
             _awareness = awareness;
+            _nextState = nextState;
         }
 
         public override void Enter() { }
@@ -22,7 +25,7 @@ namespace Game.Enemy
         {
             if (!_awareness.HasDetectedTarget()) return;
                         
-            _fsm.ChangeState(EnemyStateType.Move);
+            _fsm.ChangeState(_nextState);
         }
     }
 }

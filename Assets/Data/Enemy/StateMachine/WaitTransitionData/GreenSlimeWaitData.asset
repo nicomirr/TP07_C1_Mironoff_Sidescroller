@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4960f5f27c777f3408478d39d7c5f8a1, type: 3}
-  m_Name: DetectionLarge
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyTargetDetectorDataSo
-  _detectionRadius: 20
-  _targetLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  m_Script: {fileID: 11500000, guid: 9fa73eaceccc0b748800a7e41362f986, type: 3}
+  m_Name: GreenSlimeWaitData
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.FromWaitTransitionDataSo
+  _nextState: 0
+  _waitTime: 0

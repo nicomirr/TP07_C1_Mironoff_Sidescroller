@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 using Game.Data;
 using Game.Core;
+using Game.Marker;
 
 namespace Game.Enemy
 {
@@ -12,6 +13,8 @@ namespace Game.Enemy
         [SerializeField] private EnemyLocomotionDataSo _data;
 
         private EnemyMovement? _movement;
+        private EnemyJump? _jump;
+
         private EnemyFacing _facing;
 
         private void Awake()
@@ -19,6 +22,7 @@ namespace Game.Enemy
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
             _movement = EnemyLocomotionFactory.CreateMovement(_data.MovementData, rb, this.transform, this, this);
+            _jump = EnemyLocomotionFactory.CreateJump(_data.JumpData, rb, this.transform);
 
             _facing = new EnemyFacing(this.transform);
         }
@@ -32,6 +36,11 @@ namespace Game.Enemy
         public void Move()
         {
             _movement?.Move();
+        }
+
+        public void Jump()
+        {
+            _jump?.Jump();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

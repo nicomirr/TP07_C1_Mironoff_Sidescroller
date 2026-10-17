@@ -1,10 +1,12 @@
-namespace Game.Enemy
+namespace Game.Core
 {
     public enum EnemyStateType
     {
         None = 0,
         Idle,
         Move,
-        End = 3
+        Jump,
+        Wait,
+        End = 5
     }
 }

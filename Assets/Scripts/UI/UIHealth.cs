@@ -10,7 +10,7 @@ namespace Game.UI
     {
         [SerializeField] private UIHealthDataSo _data;
 
-        [SerializeField] private GameObject _healthChangedNotifierMonobehaviour;
+        [SerializeField] private GameObject _healthChangedNotifierGameObject;
 
         [SerializeField] private Image _fillImage;
 
@@ -23,7 +23,7 @@ namespace Game.UI
 
         private void Awake()
         {
-            _healthChangeNotifier = _healthChangedNotifierMonobehaviour.GetComponent<IHealthChangedNotifier>();
+            _healthChangeNotifier = _healthChangedNotifierGameObject.GetComponent<IHealthChangedNotifier>();
 
             _canvasGroup = GetComponent<CanvasGroup>();
         }

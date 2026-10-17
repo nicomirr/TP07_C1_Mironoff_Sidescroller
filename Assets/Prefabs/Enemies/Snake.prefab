@@ -154,7 +154,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1529509531
-  m_SortingLayer: 5
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8269670707192766922, guid: 0c05a616f0be6c747adfbfc7230efc6d, type: 3}
@@ -449,6 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc3a08a3258a284b98350bc489e3cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Enemy.EnemyBrain
+  _data: {fileID: 11400000, guid: ef7b5a988c645b54bb3a3a87626a1774, type: 2}
 --- !u!114 &5092059294647183209
 MonoBehaviour:
   m_ObjectHideFlags: 0

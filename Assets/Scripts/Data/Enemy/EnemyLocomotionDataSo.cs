@@ -7,6 +7,9 @@ namespace Game.Data
     {
         [SerializeField] private EnemyMovementDataSo _movementData;
         public EnemyMovementDataSo MovementData => _movementData;
+
+        [SerializeField] private EnemyJumpDataSo _jumpData;
+        public EnemyJumpDataSo JumpData => _jumpData;
     }
 
 }
