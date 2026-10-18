@@ -1,14 +1,18 @@
+using Game.Data;
+using Game.SceneTransitions;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 namespace Game.UI
 {
     public class UIMainMenuManager : MonoBehaviour
     {
-        [SerializeField] private PlayerInput _playerInput;
+        [SerializeField] private SceneToLoadSo _gameplayScene;
+
+        [SerializeField] private GameObject _sceneChangerGameObject;
 
         [SerializeField] private List<Button> _backButtons;
 
@@ -20,6 +24,10 @@ namespace Game.UI
         [SerializeField] private UIPanel _mainMenuPanel;
         [SerializeField] private UIPanel _settingsPanel;
         [SerializeField] private UIPanel _creditsPanel;
+        
+        private PlayerInput _playerInput;
+
+        private ISceneChanger _sceneChanger;
 
         private UIPanel _previousPanel;
         private UIPanel _currentPanel;
@@ -46,6 +54,8 @@ namespace Game.UI
 
         private void Start()
         {
+            _sceneChanger = _sceneChangerGameObject.GetComponent<ISceneChanger>();
+
             _currentPanel = _mainMenuPanel;
             _currentPanel.DisplayPanel();
 
@@ -78,6 +88,7 @@ namespace Game.UI
         private void OnPlayClicked()
         {
             _currentPanel.HidePanel();
+            _sceneChanger.ChangeScene(_gameplayScene);
         }
 
         private void OnSettingsClicked()
