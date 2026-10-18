@@ -23902,6 +23902,10 @@ PrefabInstance:
       propertyPath: _throwablesParent
       value: 
       objectReference: {fileID: 1860890786}
+    - target: {fileID: 7446181126852461503, guid: 87f02e45f9b2692478ffc8d07d326b84, type: 3}
+      propertyPath: _pauseNotifierGameObject
+      value: 
+      objectReference: {fileID: 996112522}
     - target: {fileID: 8891307752018172959, guid: 87f02e45f9b2692478ffc8d07d326b84, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.01

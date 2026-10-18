@@ -16,9 +16,7 @@ namespace Game.Player
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour, ICoroutineRunner, IHealthChangedNotifier
     {
-        [SerializeField] private bool JUMP_AVAILABLE;
-        [SerializeField] private bool IS_GROUNDED;
-
+        [SerializeField] private GameObject _pauseNotifierGameObject;
 
         [SerializeField] private PlayerDoll _doll;
 
@@ -41,6 +39,8 @@ namespace Game.Player
         private PlayerThrow _playerThrow;
         private PlayerHealth _playerHealth;
         private PlayerCollisionHandler _playerCollisionHandler;
+
+        private IPauseNotifier _pauseNotifier;
 
         public event Action<float, float> OnHealthChanged;
 
@@ -100,7 +100,9 @@ namespace Game.Player
             PlayerPickableEffects playerPickableEffects = new PlayerPickableEffects();
             playerPickableEffects.AddPickable(PickableType.HealthPotion, playerHealthEffect);
 
-            _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler, playerPowerUps, playerPickableEffects);            
+            _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler, playerPowerUps, playerPickableEffects);
+
+            _pauseNotifier = _pauseNotifierGameObject.GetComponent<IPauseNotifier>();
         }
 
         private void OnEnable()
@@ -110,8 +112,11 @@ namespace Game.Player
             _playerGroundCheck.OnJustLanded += HandleLand;
 
             _playerHealth.OnHealthChanged += RaiseHealthChanged;
-        }
 
+            _pauseNotifier.OnGamePaused += _playerInputs.DisablePlayerInputs;
+            _pauseNotifier.OnGameUnpaused += _playerInputs.EnablePlayerInputs;
+        }
+        
         private void FixedUpdate()
         {            
             HandleMovement();     
@@ -119,9 +124,6 @@ namespace Game.Player
 
         private void Update()
         {
-            JUMP_AVAILABLE = _playerJump.CanJump;
-            IS_GROUNDED = _playerGroundCheck.IsGrounded;
-
             HandlePlayerDirection();
 
             _playerJump.UpdateCoyoteTime(_playerGroundCheck.IsGrounded);
@@ -142,6 +144,9 @@ namespace Game.Player
             _playerGroundCheck.OnJustLanded -= HandleLand;
 
             _playerHealth.OnHealthChanged -= RaiseHealthChanged;
+
+            _pauseNotifier.OnGamePaused -= _playerInputs.DisablePlayerInputs;
+            _pauseNotifier.OnGameUnpaused -= _playerInputs.EnablePlayerInputs;
         }
 
         private void OnDestroy()
