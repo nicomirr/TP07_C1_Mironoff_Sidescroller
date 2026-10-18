@@ -402,6 +402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6360588649302235488}
+  - component: {fileID: 2196674532154210738}
   - component: {fileID: 3293959911585486705}
   - component: {fileID: 1223052901621162520}
   - component: {fileID: 5833122581912496869}
@@ -434,6 +435,18 @@ Transform:
   - {fileID: 8224332043560060758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &2196674532154210738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861188248208992638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317a45b6817fa434a82238125cb8b194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Marker.EnemyMarker
 --- !u!114 &3293959911585486705
 MonoBehaviour:
   m_ObjectHideFlags: 0

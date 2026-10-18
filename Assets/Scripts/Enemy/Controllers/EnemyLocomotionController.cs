@@ -4,12 +4,15 @@ using UnityEngine;
 using System.Collections;
 using Game.Data;
 using Game.Core;
+using Game.Audio;
 
 namespace Game.Enemy
 {
     public class EnemyLocomotionController : MonoBehaviour, ICoroutineRunner, ICoroutineStopper
     {
         [SerializeField] private EnemyLocomotionDataSo _data;
+
+        private AudioPlayer _audioPlayer;
 
         private EnemyMovement? _movement;
         private EnemyJump? _jump;
@@ -32,6 +35,11 @@ namespace Game.Enemy
                 disableable.Disable();            
         }
 
+        public void Initialize(AudioPlayer audioPlayer)
+        {
+            _audioPlayer = audioPlayer;
+        }
+
         public void Move()
         {
             _movement?.Move();
@@ -40,6 +48,7 @@ namespace Game.Enemy
         public void Jump()
         {
             _jump?.Jump();
+            _audioPlayer.PlayAudio(AudioCategory.JumpSFX);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

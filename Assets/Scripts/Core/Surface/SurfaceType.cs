@@ -4,7 +4,8 @@ namespace Game.Core
     {
         None = 0,
         Grass,
+        Rock,
         Wood,
-        End = 3
+        End = 4
     }
 }

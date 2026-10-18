@@ -1,15 +1,16 @@
 using UnityEngine;
 using System;
-using System.Collections;
 using Game.AnimationSystem;
 using Game.Audio;
+using Game.Common;
 using Game.Core;
 using Game.Data;
 using Game.Marker;
-using Game.Throwables;
-using Game.PowerUp;
+using Game.ParticleEffects;
 using Game.Pickables;
-using Game.Common;
+using Game.PowerUp;
+using Game.Throwables;
+using System.Collections;
 
 namespace Game.Player
 {
@@ -106,7 +107,8 @@ namespace Game.Player
 
             _pauseNotifier = _pauseNotifierGameObject.GetComponent<IPauseNotifier>();
 
-            _playerFootsteps = new PlayerFootsteps(GetComponentInChildren<FootstepsMarker>().GetComponent<AudioSource>());
+            _playerFootsteps = new PlayerFootsteps(GetComponentInChildren<FootstepsMarker>().GetComponent<AudioSource>(),
+                _data.PlayerFootstepsData);
         }
 
         private void OnEnable()
@@ -169,7 +171,7 @@ namespace Game.Player
         private void HandleFootsteps()
         {
             if (_playerGroundCheck.IsGrounded && _playerInputs.Direction != 0)
-                _playerFootsteps.PlayFootsteps();
+                _playerFootsteps.PlayFootsteps(_playerGroundCheck.CurrentSurfaceType);
         }
         private void HandleJump()
         {
@@ -261,6 +263,12 @@ namespace Game.Player
             if (collision.gameObject.TryGetComponent(out IHorizontalVelocityProvider velocityProvider))
             {
                 _playerMovement.SetVelocityProvider(velocityProvider);
+            }
+
+            if(collision.gameObject.TryGetComponent(out WaterMarker _))
+            {
+                CommandBus.Send(new PlayParticleEffectCommand(ParticleEffectType.WaterImpact, this.transform.position));
+                this.gameObject.SetActive(false);
             }
         }
 

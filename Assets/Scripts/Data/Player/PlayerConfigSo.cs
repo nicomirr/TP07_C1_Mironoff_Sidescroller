@@ -51,6 +51,9 @@ namespace Game.Data
         [SerializeField] private Vector2 _groundCheckSize;
         public Vector2 GroundCheckSize => _groundCheckSize;
 
+        [SerializeField] private PlayerFootstepsDataSo _playerFootstepsData;
+        public PlayerFootstepsDataSo PlayerFootstepsData => _playerFootstepsData;
+
     }
 
 }

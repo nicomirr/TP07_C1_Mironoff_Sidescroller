@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd84929b7773f684591c02d510f99185, type: 3}
-  m_Name: NoAudio
+  m_Name: FishAudio
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.AudioConfigSo
   _audios: []

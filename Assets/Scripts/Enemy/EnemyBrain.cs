@@ -31,7 +31,9 @@ namespace Game.Enemy
             _health = GetComponent<EnemyHealthController>();
 
             AudioPlayer audioPlayer = new AudioPlayer(_data.AudioConfig, GetComponentInChildren<AudioSource>());
+            
             _health?.Initialize(audioPlayer);
+            _locomotion.Initialize(audioPlayer);
 
             _fsm = new EnemyStateMachine();
 
