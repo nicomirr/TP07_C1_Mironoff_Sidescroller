@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Game.Data
 {
-    [CreateAssetMenu(fileName = "SliderTypeSo", menuName = "Scriptable Objects/SliderTypeSo")]
-    public class SliderTypeSo : ScriptableObject
+    [CreateAssetMenu(fileName = "VolumeButtonTypeSo", menuName = "Scriptable Objects/VolumeButtonTypeSo")]
+    public class VolumeButtonsTypeSo : ScriptableObject
     {
         [SerializeField] private List<string> _volumeTypes;
         public List<string> VolumeTypes => _volumeTypes;
