@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using Game.Data;
+using Game.Surface;
+using Game.Core;
 
 public class PlayerGroundCheck 
 {
@@ -10,6 +12,9 @@ public class PlayerGroundCheck
     private readonly Vector2 _groundCheckSize;
 
     public event Action OnJustLanded;
+
+    private SurfaceType _currentSurfaceType;
+    public SurfaceType CurrentSurfaceType => _currentSurfaceType;
 
     private bool _isGroundedPreviousState;
     private bool _isGrounded;
@@ -22,14 +27,15 @@ public class PlayerGroundCheck
         _groundLayer = data.GroundLayer;
         _groundCheckSize = data.GroundCheckSize;
 
-        _isGrounded = true;
         _isGroundedPreviousState = _isGrounded;
     }
 
     public void UpdateGroundedState()
     {
-        _isGrounded = Physics2D.BoxCast(_groundCheck.position,_groundCheckSize, 0, Vector3.down,
+        RaycastHit2D hit = Physics2D.BoxCast(_groundCheck.position, _groundCheckSize, 0, Vector3.down,
             _groundCheckDistance, _groundLayer);
+
+        _isGrounded = hit;
 
         if (_isGrounded != _isGroundedPreviousState)
         {
@@ -38,5 +44,9 @@ public class PlayerGroundCheck
 
             _isGroundedPreviousState = _isGrounded;
         }
+
+        if (hit.collider != null &&  hit.collider.TryGetComponent(out SurfaceIdentifier surface))        
+            _currentSurfaceType = surface.SurfaceType;
+        
     }
 }

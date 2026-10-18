@@ -4,13 +4,12 @@ namespace Game.Data
 {
     [CreateAssetMenu(fileName = "EnemyDataSo", menuName = "Scriptable Objects/EnemyDataSo")]
     public class EnemyDataSo : ScriptableObject
-    {        
-        [SerializeField] private HealthDataSo _healthData;
-        public HealthDataSo HealthData => _healthData;
+    {
+        [SerializeField] private EnemyStateMachineTransitionsSo _transitionsData;
+        public EnemyStateMachineTransitionsSo TransitionsData => _transitionsData;
 
-        [SerializeField] private float _contactDamage;
-        public float ContactDamage => _contactDamage;   
+        [SerializeField] private AudioConfigSo _audioConfig;
+        public AudioConfigSo AudioConfig => _audioConfig;
     }
-
 }
 

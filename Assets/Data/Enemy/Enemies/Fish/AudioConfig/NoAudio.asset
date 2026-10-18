@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58c26eb7332c53743b61b97de4bdd2b2, type: 3}
-  m_Name: FishHealthData
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.HealthDataSo
-  _maxHealth: 8
-  effectType: 2
+  m_Script: {fileID: 11500000, guid: dd84929b7773f684591c02d510f99185, type: 3}
+  m_Name: NoAudio
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.AudioConfigSo
+  _audios: []

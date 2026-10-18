@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462960173581811236}
   - component: {fileID: 7270834791142428923}
+  - component: {fileID: 5739054411691895018}
   - component: {fileID: 3278138276622319857}
   - component: {fileID: 3681910869606897597}
   m_Layer: 6
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6110644649325243563}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 184.4, y: -3.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48,6 +49,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Raft
   _data: {fileID: 11400000, guid: a7d821f8cea9c95438d3c780f129ca90, type: 2}
+--- !u!114 &5739054411691895018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110644649325243563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a9b66e4372519499b64a5aa6a50d34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Surface.SurfaceIdentifier
+  _surfaceType: 2
 --- !u!50 &3278138276622319857
 Rigidbody2D:
   serializedVersion: 5

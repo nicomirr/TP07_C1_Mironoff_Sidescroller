@@ -25,7 +25,10 @@ namespace Game.ParticleEffects
             foreach (ParticleSystem particleSystem in currentParticleSystems)
             {
                 if (!particleSystem.isPlaying)
+                {
+                    particleSystem.gameObject.SetActive(false);
                     return particleSystem;
+                }
             }
 
             Debug.LogError("Error. El pool de particulas debe tener siempre un objeto disponible.");

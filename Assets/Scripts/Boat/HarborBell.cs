@@ -14,12 +14,16 @@ namespace Game.Boat
         [SerializeField] private Transform _boatTransform;
         [SerializeField] private Transform _harborTransform;
 
+        private AudioSource _audioSource;
+
         private IMovementStopper _movementStopper;
 
         private Animator _animator;
 
         private void Awake()
         {
+            _audioSource = GetComponent<AudioSource>();
+
             _animator = GetComponentInChildren<Animator>();
             _movementStopper = _MovementStopperGameObject.GetComponent<IMovementStopper>();
         }
@@ -29,6 +33,7 @@ namespace Game.Boat
             if (collision.gameObject.TryGetComponent(out ThrowableMarker _))
             {                
                 _animator.SetTrigger(_data.BellAnimationTrigger);
+                _audioSource.Play();
 
                 _movementStopper.StopMovement();
                 _boatTransform.position = new Vector3(_harborTransform.position.x, _boatTransform.position.y, _boatTransform.position.z);

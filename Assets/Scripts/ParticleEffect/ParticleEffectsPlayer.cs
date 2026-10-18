@@ -24,6 +24,7 @@ namespace Game.ParticleEffects
             }
 
             particleSystem.transform.position = position;
+            particleSystem.gameObject.SetActive(true);
             particleSystem.Play();
         }
 

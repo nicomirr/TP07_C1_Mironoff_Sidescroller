@@ -1,7 +1,10 @@
+#nullable enable
+
 using UnityEngine;
 using Game.Core;
 using Game.Data;
 using System.Collections;
+using Game.Audio;
 
 namespace Game.Enemy
 {
@@ -11,28 +14,32 @@ namespace Game.Enemy
 
     public class EnemyBrain : MonoBehaviour, ICoroutineRunner
     {
-        [SerializeField] private EnemyStateMachineTransitionsSo _data;
+        [SerializeField] private EnemyDataSo _data;
 
         private EnemyLocomotionController _locomotion;
         private EnemyCombatController _combat;
         private EnemyAwarenessController _awareness;
+        private EnemyHealthController? _health;
 
-        private EnemyStateMachine _fsm;
-
-        
+        private EnemyStateMachine _fsm;        
 
         private void Awake()
         {
             _locomotion = GetComponent<EnemyLocomotionController>();
             _combat = GetComponent<EnemyCombatController>();
             _awareness = GetComponent<EnemyAwarenessController>();
+            _health = GetComponent<EnemyHealthController>();
+
+            AudioPlayer audioPlayer = new AudioPlayer(_data.AudioConfig, GetComponentInChildren<AudioSource>());
+            _health?.Initialize(audioPlayer);
 
             _fsm = new EnemyStateMachine();
 
-            EnemyIdleState idleState = new EnemyIdleState(_fsm, _awareness, _data.FromIdleTransition);
+            EnemyIdleState idleState = new EnemyIdleState(_fsm, _awareness, _data.TransitionsData.FromIdleTransition);
             EnemyMoveState moveState = new EnemyMoveState(_fsm, _locomotion);
-            EnemyJumpState jumpState = new EnemyJumpState(_fsm, _locomotion, _data.FromJumpTransition);
-            EnemyWaitState waitState = new EnemyWaitState(_fsm, _awareness, _data.WaitTransitionData.NextState, this, _data.WaitTransitionData.WaitTime);
+            EnemyJumpState jumpState = new EnemyJumpState(_fsm, _locomotion, _data.TransitionsData.FromJumpTransition);
+            EnemyWaitState waitState = new EnemyWaitState(_fsm, _awareness, _data.TransitionsData.WaitTransitionData.NextState, 
+                this, _data.TransitionsData.WaitTransitionData.WaitTime);
 
             _fsm.AddState(EnemyStateType.Idle, idleState);
             _fsm.AddState(EnemyStateType.Move, moveState);

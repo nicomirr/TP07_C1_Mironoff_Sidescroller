@@ -13,9 +13,7 @@ namespace Game.Settings
         public Dictionary<string, float> Volumes => _volumes;
 
         private void Awake()
-        {
-            DontDestroyOnLoad(this.gameObject);
-           
+        {           
             _volumes = new Dictionary<string, float>();
 
             foreach(string group in _data.Group.AudioGroups)

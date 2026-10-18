@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd84929b7773f684591c02d510f99185, type: 3}
   m_Name: PlayerAudioConfig
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.AudioConfigSo
-  _audios: []
+  _audios:
+  - {fileID: 11400000, guid: cbdff28390a869e4d89d58c5736475ba, type: 2}
+  - {fileID: 11400000, guid: d538949f9c382544fb833722bb98b0d3, type: 2}

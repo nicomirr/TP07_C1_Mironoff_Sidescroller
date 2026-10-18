@@ -10,7 +10,7 @@ namespace Game.Core
         BellSFX,
         KnockSFX,
         BushSFX,
-        PuffDestroySFX,
+        DestroySFX,
         CloudSFX,
         DamageSFX,
         InvincibilityPowUpSFX,

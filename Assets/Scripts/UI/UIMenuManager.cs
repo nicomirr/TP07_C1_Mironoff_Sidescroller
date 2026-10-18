@@ -20,7 +20,7 @@ namespace Game.UI
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _exitButton; 
 
-        [SerializeField] private UIPanel _mainPanel;
+        [SerializeField] protected UIPanel _mainPanel;
         [SerializeField] private UIPanel _settingsPanel;
         
         private PlayerInput _playerInput;
@@ -32,7 +32,7 @@ namespace Game.UI
 
         private bool _wasGamepad;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
         }

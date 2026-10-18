@@ -19,6 +19,7 @@ public class EnemyDeath
         if (currentHealth > 0) return;
 
         CommandBus.Send(new PlayParticleEffectCommand(_effectType, _enemy.transform.position));
+
         _enemy.SetActive(false);        
     }    
 }

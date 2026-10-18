@@ -35,6 +35,7 @@ namespace Game.ParticleEffects
             {
                 ParticleSystem particleSystem = Object.Instantiate(_particleSystemPrefabs[particleEffectType].ParticleSystemPrefab, _parent);
                 particleSystem.Stop();
+                particleSystem.gameObject.SetActive(false);
                 
                 pool.Add(particleSystem);
             }

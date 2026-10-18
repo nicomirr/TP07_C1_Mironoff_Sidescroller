@@ -4,7 +4,6 @@ using UnityEngine;
 using System.Collections;
 using Game.Data;
 using Game.Core;
-using Game.Marker;
 
 namespace Game.Enemy
 {

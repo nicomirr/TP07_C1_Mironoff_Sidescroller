@@ -26,8 +26,9 @@ namespace Game.Player
 
         private Rigidbody2D _rb;
 
-        private PlayerAnimationEvents _playerAnimationEvents; 
+        private AudioPlayer _audioPlayer;
 
+        private PlayerAnimationEvents _playerAnimationEvents; 
         private PlayerInputs _playerInputs;
         private PlayerStateMachine _playerFsm;
         private PlayerAnimations _playerAnimations;
@@ -39,6 +40,7 @@ namespace Game.Player
         private PlayerThrow _playerThrow;
         private PlayerHealth _playerHealth;
         private PlayerCollisionHandler _playerCollisionHandler;
+        private PlayerFootsteps _playerFootsteps;
 
         private IPauseNotifier _pauseNotifier;
 
@@ -47,6 +49,8 @@ namespace Game.Player
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+
+            _audioPlayer = new AudioPlayer(_data.AudioConfigData, GetComponentInChildren<AudioSource>());
 
             _playerFsm = new PlayerStateMachine(_data);
 
@@ -62,9 +66,7 @@ namespace Game.Player
             _playerFacing = new PlayerFacing(this.transform, true);
 
             _playerMovement = new PlayerMovement(_rb, _data);
-
-            AudioPlayer audioPlayer = new AudioPlayer(_data.AudioConfigData, GetComponentInChildren<AudioSource>());
-                        
+                                    
             _playerJump = new PlayerJump(_rb, _data);
 
             Transform groundCheck = GetComponentInChildren<GroundCheckMarker>().transform;
@@ -103,6 +105,8 @@ namespace Game.Player
             _playerCollisionHandler = new PlayerCollisionHandler(_playerFsm, damageHandler, playerPowerUps, playerPickableEffects);
 
             _pauseNotifier = _pauseNotifierGameObject.GetComponent<IPauseNotifier>();
+
+            _playerFootsteps = new PlayerFootsteps(GetComponentInChildren<FootstepsMarker>().GetComponent<AudioSource>());
         }
 
         private void OnEnable()
@@ -125,6 +129,8 @@ namespace Game.Player
         private void Update()
         {
             HandlePlayerDirection();
+
+            HandleFootsteps();
 
             _playerJump.UpdateCoyoteTime(_playerGroundCheck.IsGrounded);
             HandleJump(); 
@@ -160,6 +166,11 @@ namespace Game.Player
             _playerAnimations.SetPlayerDirection(_playerFacing.IsFacingRight ? 1f : -1f);
         }
 
+        private void HandleFootsteps()
+        {
+            if (_playerGroundCheck.IsGrounded && _playerInputs.Direction != 0)
+                _playerFootsteps.PlayFootsteps();
+        }
         private void HandleJump()
         {
             _playerGravity.UpdateGravity();
@@ -173,6 +184,7 @@ namespace Game.Player
             if (_playerInputs.JumpPressed && _playerJump.CanJump)
             {
                 _playerJump.Jump();
+                _audioPlayer.PlayAudio(AudioCategory.JumpSFX);
                 _playerAnimations.SetJumpAnimation(true);       
             }
         }
@@ -242,6 +254,7 @@ namespace Game.Player
             {
                 float damageDirection = this.transform.position.x - collision.transform.position.x;
 
+                _audioPlayer.PlayAudio(AudioCategory.DamageSFX);
                 _playerCollisionHandler.HandleDamageCollision(collision.gameObject, damageProvider, damageDirection);
             }
 

@@ -8,9 +8,6 @@ namespace Game.Pause
 {
     public class PauseManager : MonoBehaviour, IPauseToggle, IPauseNotifier
     {
-        [SerializeField] private List<UIPanel> _otherPanels;
-        [SerializeField] private UIPanel _pausePanel;
-
         private bool _gamePaused;
 
         public event Action OnGamePaused;
@@ -20,21 +17,12 @@ namespace Game.Pause
         {           
             _gamePaused = !_gamePaused;
 
-            if (_gamePaused)
-            {
-                OnGamePaused?.Invoke();
-                _pausePanel.DisplayPanel();
-            }
-            else
-            {
-                OnGameUnpaused?.Invoke();
-                _pausePanel.HidePanel();
-                
-                foreach(UIPanel panel in _otherPanels)
-                    panel.HidePanel();
-            }
-
-                //CursorEvents.RaiseChangeCursorVisibilityRequest(_gamePaused);
+            if (_gamePaused)            
+                OnGamePaused?.Invoke();            
+            else            
+                OnGameUnpaused?.Invoke();               
+            
+            //CursorEvents.RaiseChangeCursorVisibilityRequest(_gamePaused);
 
             Time.timeScale = _gamePaused ? 0f : 1f;            
         }

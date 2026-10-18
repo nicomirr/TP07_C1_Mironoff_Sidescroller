@@ -1,18 +1,32 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Game.Core;
 
 namespace Game.UI
 {
     public class UIPauseManager : UIMenuManager
     {
-        [SerializeField] private GameObject _pauseToggleGameObject;
+        [SerializeField] private GameObject _pauseGameObject;
         [SerializeField] private Button _mainMenuButton;
 
         private IPauseToggle _pauseToggle;
+        private IPauseNotifier _pauseNotifier;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _pauseToggle = _pauseGameObject.GetComponent<IPauseToggle>();
+            _pauseNotifier = _pauseGameObject.GetComponent<IPauseNotifier>();
+        }
 
         protected override void OnEnable()
         {
             base.OnEnable();
+
+            _pauseNotifier.OnGamePaused += DisplayPausePanel;
+            _pauseNotifier.OnGameUnpaused += ResetPauseState;
 
             _mainMenuButton.onClick.AddListener(OnMainMenuClicked);
         }
@@ -21,17 +35,17 @@ namespace Game.UI
         {
             base.OnDisable();
 
+            _pauseNotifier.OnGamePaused -= DisplayPausePanel;
+            _pauseNotifier.OnGameUnpaused -= ResetPauseState;
+
             _mainMenuButton.onClick.RemoveAllListeners();
         }
 
         protected override void Start()
         {
-            base.Start();
-
-            _pauseToggle = _pauseToggleGameObject.GetComponent<IPauseToggle>();
+            base.Start();                
             
             _currentPanel.HidePanel();
-
         }
 
         protected override void OnPlayClicked()
@@ -45,6 +59,18 @@ namespace Game.UI
             _currentPanel.HidePanel();
 
             _sceneChanger.ChangeScene(_sceneToLoad);
+        }
+
+        private void DisplayPausePanel()
+        {
+            _currentPanel.DisplayPanel();
+        }
+
+        private void ResetPauseState()
+        {
+            _currentPanel.HidePanel();
+            _currentPanel = _mainPanel;
+            EventSystem.current.SetSelectedGameObject(_currentPanel.GamepadInitialButton.gameObject);
         }
     }
 

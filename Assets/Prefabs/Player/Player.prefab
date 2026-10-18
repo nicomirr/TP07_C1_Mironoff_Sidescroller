@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIEnemyHealth
   _data: {fileID: 11400000, guid: f5c5a8ddad5702143bb9e31851fc6fd8, type: 2}
+  _healthChangedNotifierGameObject: {fileID: 5156175835259768080}
   _fillImage: {fileID: 2486246689404872384}
 --- !u!225 &5825037298079421047
 CanvasGroup:
@@ -557,7 +558,7 @@ Transform:
   m_GameObject: {fileID: 4812998906277277943}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.218, y: -0.771, z: 0}
+  m_LocalPosition: {x: -0.218, y: -0.765, z: 0}
   m_LocalScale: {x: 1, y: 0.0675, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -583,7 +584,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4812998906277277943}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -701,6 +702,7 @@ Transform:
   - {fileID: 4372227152280129861}
   - {fileID: 6898219582508085515}
   - {fileID: 5504464713106560362}
+  - {fileID: 7455869450922691140}
   - {fileID: 4466385258926926707}
   - {fileID: 821446667371882861}
   - {fileID: 8770867609850784711}
@@ -730,9 +732,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edeaa1f4406199141ba3e32d33ff9bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _pauseNotifierGameObject: {fileID: 0}
   _doll: {fileID: 201207104941614737, guid: 31122337f63f84f4d97f684510e7a9db, type: 3}
   _data: {fileID: 11400000, guid: 76b7920ae61f4244bb18857b09708d8b, type: 2}
-  _UIHealth: {fileID: 2393359673728704003}
   _throwablesParent: {fileID: 0}
 --- !u!50 &6833376841393045353
 Rigidbody2D:
@@ -749,7 +751,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 4
   m_Material: {fileID: 6200000, guid: 3aac2f956c1b3e843adc5f4d4f23ddf8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -807,6 +809,148 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5647526, y: 1.4942164}
   m_EdgeRadius: 0
+--- !u!1 &8244800125594651643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7455869450922691140}
+  - component: {fileID: 7529195436554381372}
+  - component: {fileID: 1406672831051269218}
+  m_Layer: 0
+  m_Name: Footsteps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7455869450922691140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244800125594651643}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8891307752018172959}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7529195436554381372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244800125594651643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29288e644e712c64fab5029481c7a0c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FootstepsMarker
+--- !u!82 &1406672831051269218
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244800125594651643}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -6731198689030843207, guid: 273b608f2f70ecc4484d54619c438c89, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: ad8d12ba4bf307c4c8eea78aa5ebe69f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8793242305626112215
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +1056,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1766382219
-  m_SortingLayer: 3
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: a30eb2b81ae35d44ab791975c3544cb0, type: 3}

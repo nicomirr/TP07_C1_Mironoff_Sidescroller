@@ -40,6 +40,11 @@ namespace Game.UI
             InitializeSliderValue(_volumeProvider.Volumes);
         }
 
+        private void Start()
+        {
+            NotifyVolumeChange();
+        }
+
         private void InitializeSliderValue(Dictionary<string, float> volumes)
         {           
             foreach(KeyValuePair<string, float> pair in volumes)
@@ -49,7 +54,7 @@ namespace Game.UI
                     _volumeFill.fillAmount = pair.Value;
                     break;
                 }
-            }
+            }            
         }
 
         private void OnVolumeIncrease()

@@ -3,12 +3,15 @@ using System;
 using Game.Core;
 using Game.Data;
 using Game.Common;
+using Game.Audio;
 
 namespace Game.Enemy
 {
     public class EnemyHealthController : MonoBehaviour, IHealthChangedNotifier
     {
         [SerializeField] private HealthDataSo _data;
+
+        private AudioPlayer _audioPlayer;
 
         private Health _health;
         private EnemyDeath _death;
@@ -33,11 +36,17 @@ namespace Game.Enemy
             _health.OnHealthChanged -= _death.HandleDeath;
         }
 
+        public void Initialize(AudioPlayer audioPlayer)
+        {
+            _audioPlayer = audioPlayer;
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (!collision.gameObject.TryGetComponent(out IDamageProvider damageProvider))
                 return;
 
+            _audioPlayer.PlayAudio(AudioCategory.DamageSFX);
             _health.TakeDamage(damageProvider.Damage);
         }
 
@@ -45,7 +54,6 @@ namespace Game.Enemy
         {
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
         }
-
     }
 }
 
