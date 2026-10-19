@@ -10,6 +10,9 @@ namespace Game.Data
 
         [SerializeField] private string _rightDeathAnimation;
         public int RightDeathAnimationHash => Animator.StringToHash(_rightDeathAnimation);
+
+        [SerializeField] private float _destroyTime;
+        public float DestroyTime => _destroyTime;
     }
 
 }

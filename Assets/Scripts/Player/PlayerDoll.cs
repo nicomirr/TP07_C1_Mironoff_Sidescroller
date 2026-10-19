@@ -3,6 +3,7 @@ using Game.Core;
 using Game.Data;
 using Game.Marker;
 using Game.ParticleEffects;
+using System.Collections;
 
 namespace Game.Management
 {
@@ -17,6 +18,11 @@ namespace Game.Management
             _animator = GetComponentInChildren<Animator>();
         }
 
+        private void Start()
+        {
+            StartCoroutine(DestroyRoutine());
+        }
+
         public void SetAnimation(float direction)
         {
             if(direction > 0)
@@ -26,6 +32,13 @@ namespace Game.Management
             }
 
             _animator.SetTrigger(_data.LeftDeathAnimationHash);
+        }
+
+        private IEnumerator DestroyRoutine()
+        {
+            yield return new WaitForSeconds(_data.DestroyTime);
+
+            Destroy(this.gameObject);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

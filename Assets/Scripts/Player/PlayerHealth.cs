@@ -6,9 +6,7 @@ namespace Game.Player
 {
     public class PlayerHealth : Health, IHealable
     {
-        public PlayerHealth(HealthDataSo data) : base(data)
-        {
-        }
+        public PlayerHealth(HealthDataSo data) : base(data) { }
 
         public bool TryHeal(float amount)
         {
@@ -18,6 +16,12 @@ namespace Game.Player
             
             RaiseHealthChanged();
             return true;
+        }
+
+        public void RestoreHealth()
+        {
+            _currentHealth = _maxHealth;
+            RaiseHealthChanged();
         }
     }
 

@@ -1,14 +1,19 @@
 using UnityEngine;
+using System.Collections;
 using Game.Core;
 using Game.Data;
 
 namespace Game.Management
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour, ICoroutineRunner
     {
         [SerializeField] private GameManagerDataSo _data;
 
-        [SerializeField] private GameObject _playerDeathNotifierObject;
+        [SerializeField] private GameObject _playerObject;
+
+        [SerializeField] private GameObject _screenFaderObject;
+
+        [SerializeField] private GameObject _checkpointReaderObject;
 
         private PlayerDeathHandler _playerDeathHandler;
 
@@ -16,9 +21,18 @@ namespace Game.Management
 
         private void Awake()
         {
-            _playerDeathNotifier = _playerDeathNotifierObject.GetComponent<IDeathNotifier>();
+            _playerDeathNotifier = _playerObject.GetComponent<IDeathNotifier>();
+           
+            IScreenFader screenFader = _screenFaderObject.GetComponent<IScreenFader>();
+           
+            ICheckpointReader checkpointReader = _checkpointReaderObject.GetComponent<ICheckpointReader>();
 
-            _playerDeathHandler = new PlayerDeathHandler(_data);
+            IPositionReader playerInitialPositionReader = _playerObject.GetComponent<IPositionReader>();
+
+            IReset playerReset = _playerObject.GetComponent<IReset>();
+
+            _playerDeathHandler = new PlayerDeathHandler(_data.DeathHandlerData, this, screenFader, checkpointReader, _playerObject, 
+                playerInitialPositionReader, playerReset);
         }
 
         private void OnEnable()
@@ -36,6 +50,10 @@ namespace Game.Management
             _playerDeathHandler.HandleDeath(isWater, direction, position);
         }
 
+        public Coroutine RunCoroutine(IEnumerator routine)
+        {
+            return StartCoroutine(routine);
+        }
     }
 
 }

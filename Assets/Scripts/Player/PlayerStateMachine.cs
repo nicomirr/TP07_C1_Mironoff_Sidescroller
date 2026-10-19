@@ -35,5 +35,10 @@ namespace Game.Player
             _currentState = newState;
             return true;
         }
+
+        public void ResetState()
+        {
+            _currentState = PlayerState.Normal;
+        }
     }
 }

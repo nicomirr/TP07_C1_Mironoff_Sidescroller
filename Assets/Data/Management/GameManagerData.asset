@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c65ba585e786ed4185b746a4f632256, type: 3}
   m_Name: GameManagerData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.GameManagerDataSo
-  _playerDollObject: {fileID: 3455577097743600367, guid: 31122337f63f84f4d97f684510e7a9db, type: 3}
+  _deathHandlerData: {fileID: 11400000, guid: 530f316f9d314f34b9f2968b36ad1b24, type: 2}

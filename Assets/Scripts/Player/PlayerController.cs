@@ -1,21 +1,21 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using Game.AnimationSystem;
 using Game.Audio;
 using Game.Common;
 using Game.Core;
 using Game.Data;
 using Game.Marker;
-using Game.ParticleEffects;
 using Game.Pickables;
 using Game.PowerUp;
 using Game.Throwables;
-using System.Collections;
 
 namespace Game.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlayerController : MonoBehaviour, ICoroutineRunner, IHealthChangedNotifier, IDeathNotifier
+    public class PlayerController : MonoBehaviour, ICoroutineRunner, IHealthChangedNotifier, IDeathNotifier, IReset,
+        IPositionReader
     {
         [SerializeField] private GameObject _pauseNotifierGameObject;
 
@@ -24,6 +24,9 @@ namespace Game.Player
         [SerializeField] private Transform _throwablesParent;
 
         private Rigidbody2D _rb;
+
+        private Vector2 _initialPosition;
+        public Vector2 Position => _initialPosition;
 
         private AudioPlayer _audioPlayer;
 
@@ -121,7 +124,12 @@ namespace Game.Player
             _pauseNotifier.OnGamePaused += _playerInputs.DisablePlayerInputs;
             _pauseNotifier.OnGameUnpaused += _playerInputs.EnablePlayerInputs;
         }
-        
+
+        private void Start()
+        {
+            _initialPosition = this.transform.position;
+        }
+
         private void FixedUpdate()
         {            
             HandleMovement();     
@@ -293,6 +301,12 @@ namespace Game.Player
         public Coroutine RunCoroutine(IEnumerator routine)
         {
             return StartCoroutine(routine);
+        }
+
+        public void ResetPlayer()
+        {
+            _playerHealth.RestoreHealth();
+            _playerFsm.ResetState();
         }
     }
 }

@@ -1,8 +1,9 @@
 using UnityEngine;
+using Game.Core;
 
 namespace Game.UI
 {
-    public class UIFadeBackground : MonoBehaviour
+    public class UIFadeBackground : MonoBehaviour, IScreenFader
     {
         private static readonly int FADE_OUT_TRIGGER = Animator.StringToHash("fadeOut");
         private static readonly int FADE_IN_TRIGGER = Animator.StringToHash("fadeIn");
