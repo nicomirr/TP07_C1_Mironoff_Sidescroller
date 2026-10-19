@@ -40,3 +40,6 @@ Este juego también fue posible gracias al acompañamiento del profesor:
 - Sistema de audio mediante AudioMixer
 - Patrón Command
 - Composición sobre herencia
+
+itch.io: [https://nicomironoff.itch.io/the-door
+](https://nicomironoff.itch.io/the-door)
