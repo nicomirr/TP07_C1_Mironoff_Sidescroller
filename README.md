@@ -12,6 +12,20 @@ Este juego fue desarrollado por un estudiante de <a href="https://www.imagecampu
   </a>
 </p>
 
+## Controles
+
+Joystick:
+- A: saltar
+- X: disparar
+- Analógico: movimiento
+- Botón pausa: pausa
+
+Teclado & Mouse:
+- Barra espaciadora: saltar
+- Click izquierdo: disparar
+- WASD: movimiento
+- P: pausa
+
 ## Créditos
 
 - **Nicolás Mironoff** - *Programación*
