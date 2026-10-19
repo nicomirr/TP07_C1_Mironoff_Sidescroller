@@ -1,19 +1,40 @@
 using UnityEngine;
+using Game.Core;
+using Game.Data;
+using Game.Marker;
+using Game.ParticleEffects;
 
-public class PlayerDoll : MonoBehaviour
+namespace Game.Management
 {
-    Animator animator;
-
-    public void SetLeftAnimation()
+    public class PlayerDoll : MonoBehaviour
     {
-        animator = GetComponentInChildren<Animator>();
+        [SerializeField] private PlayerDollDataSo _data;
 
-        animator.SetTrigger("DeathLeft");
-    }
+        private Animator _animator;
 
-    public void SetRightAnimation()
-    {
-        animator = GetComponentInChildren<Animator>();
-        animator.SetTrigger("DeathRight");
+        private void Awake()
+        {
+            _animator = GetComponentInChildren<Animator>();
+        }
+
+        public void SetAnimation(float direction)
+        {
+            if(direction > 0)
+            {
+                _animator.SetTrigger(_data.RightDeathAnimationHash);
+                return;
+            }
+
+            _animator.SetTrigger(_data.LeftDeathAnimationHash);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if(collision.gameObject.TryGetComponent(out WaterMarker _))
+            {
+                CommandBus.Send(new PlayParticleEffectCommand(ParticleEffectType.WaterImpact, this.transform.position));
+                this.gameObject.SetActive(false);
+            }
+        }
     }
 }

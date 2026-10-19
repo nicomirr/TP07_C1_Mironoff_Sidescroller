@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd84929b7773f684591c02d510f99185, type: 3}
   m_Name: FishAudio
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.AudioConfigSo
-  _audios: []
+  _audios:
+  - {fileID: 11400000, guid: b479a628e38793b4d853b03813141983, type: 2}

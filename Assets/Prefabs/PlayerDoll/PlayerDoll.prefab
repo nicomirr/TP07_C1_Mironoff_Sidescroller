@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcafbc740db36f4cb7f1ca9754a2c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDoll
-  animator: {fileID: 4380923230744799085}
+  _data: {fileID: 11400000, guid: c99362e3e9e9be342938cb0a9f382e2c, type: 2}
 --- !u!50 &5687392885767535218
 Rigidbody2D:
   serializedVersion: 5
@@ -200,7 +200,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1766382219
-  m_SortingLayer: 1
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7463431554347131494, guid: 9b6b71be3314b874288e58d1866e762d, type: 3}

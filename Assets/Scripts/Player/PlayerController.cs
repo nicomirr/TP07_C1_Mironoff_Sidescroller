@@ -15,11 +15,9 @@ using System.Collections;
 namespace Game.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlayerController : MonoBehaviour, ICoroutineRunner, IHealthChangedNotifier
+    public class PlayerController : MonoBehaviour, ICoroutineRunner, IHealthChangedNotifier, IDeathNotifier
     {
         [SerializeField] private GameObject _pauseNotifierGameObject;
-
-        [SerializeField] private PlayerDoll _doll;
 
         [SerializeField] private PlayerConfigSo _data;
 
@@ -46,6 +44,7 @@ namespace Game.Player
         private IPauseNotifier _pauseNotifier;
 
         public event Action<float, float> OnHealthChanged;
+        public event Action<bool, float, Vector3> OnDeath;
 
         private void Awake()
         {
@@ -235,18 +234,12 @@ namespace Game.Player
         }
 
         private void HandleDeath()
-        {
-            //REFACTORIZAR
-
+        {            
             if (_playerHealth.CurrentHealth > 0) return;
 
-            PlayerDoll doll = Instantiate(_doll);
-
-            if (!_playerFacing.IsFacingRight)
-                doll.SetLeftAnimation();
-            else
-                doll.SetRightAnimation();
-
+            float direction = _playerFacing.IsFacingRight? 1 : -1;
+            
+            OnDeath?.Invoke(false, direction, this.transform.position);
             this.gameObject.SetActive(false);
         }
 
@@ -267,8 +260,8 @@ namespace Game.Player
 
             if(collision.gameObject.TryGetComponent(out WaterMarker _))
             {
-                CommandBus.Send(new PlayParticleEffectCommand(ParticleEffectType.WaterImpact, this.transform.position));
                 this.gameObject.SetActive(false);
+                OnDeath?.Invoke(true, 0, this.transform.position);
             }
         }
 

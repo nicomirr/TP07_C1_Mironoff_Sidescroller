@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c65ba585e786ed4185b746a4f632256, type: 3}
+  m_Name: GameManagerData
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.GameManagerDataSo
+  _playerDollObject: {fileID: 3455577097743600367, guid: 31122337f63f84f4d97f684510e7a9db, type: 3}
