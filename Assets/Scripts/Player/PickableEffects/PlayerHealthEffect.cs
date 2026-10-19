@@ -14,8 +14,7 @@ namespace Game.Player
 
         public override void Consume(IPickable pickable)
         {
-            if (!_healable.TryHeal(pickable.Data.Amount)) return;
-
+            _healable.Heal(pickable.Data.Amount);
             pickable.Consume();
         }
     }

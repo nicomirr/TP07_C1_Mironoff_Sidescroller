@@ -55,6 +55,11 @@ namespace Game.Enemy
         {
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
         }
+
+        public void RestoreHealth()
+        {
+            _health.RestoreHealth();
+        }
     }
 }
 

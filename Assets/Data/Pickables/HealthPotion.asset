@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ad08ecb84a29346b7d1e670fe39933, type: 3}
   m_Name: HealthPotion
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.PickableDataSo
-  _amount: 1
   _pickableType: 1
+  _amount: 1
+  _despawnTime: 15

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.InvincibilityPowDataSo
   _powerUpType: 0
   _powerUpSfx: 0
-  _time: 6
-  _warningTime: 6
+  _time: 10
+  _warningTime: 10
   _totalWarningBlinks: 20
   _flickerColor:
     serializedVersion: 2

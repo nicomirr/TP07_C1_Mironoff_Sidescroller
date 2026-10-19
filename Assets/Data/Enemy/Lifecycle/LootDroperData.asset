@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c67d4e7a867be4e882a869d605953a, type: 3}
+  m_Name: LootDroperData
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.LootDropperDataSo
+  _droppablePrefab: {fileID: 237812362671851934, guid: 22fec602d0a9582499206c039b406972, type: 3}
+  _dropChance: 20

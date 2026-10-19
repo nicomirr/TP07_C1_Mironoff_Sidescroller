@@ -12,7 +12,7 @@ namespace Game.Enemy
     [RequireComponent(typeof(EnemyCombatController))]
     [RequireComponent(typeof(EnemyAwarenessController))]
 
-    public class EnemyBrain : MonoBehaviour, ICoroutineRunner
+    public class EnemyBrain : MonoBehaviour, ICoroutineRunner, IReset
     {
         [SerializeField] private EnemyDataSo _data;
 
@@ -59,7 +59,13 @@ namespace Game.Enemy
         public Coroutine RunCoroutine(IEnumerator routine)
         {
             return StartCoroutine(routine);
-        }               
+        }
 
+        public void ResetObject()
+        {
+            _awareness.ResetTargetDetection();
+            _health?.RestoreHealth();
+            _fsm.ResetState();
+        }
     }
 }

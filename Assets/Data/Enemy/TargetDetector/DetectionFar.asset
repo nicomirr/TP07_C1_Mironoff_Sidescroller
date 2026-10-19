@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DetectionFar
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTargetDetectorDataSo
   _detectionRadius: 15
+  _facingRadius: 30
   _targetLayer:
     serializedVersion: 2
     m_Bits: 128

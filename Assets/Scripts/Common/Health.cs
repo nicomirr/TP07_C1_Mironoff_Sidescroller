@@ -30,5 +30,10 @@ namespace Game.Common
         {
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
         }
+        public void RestoreHealth()
+        {
+            _currentHealth = _maxHealth;
+            RaiseHealthChanged();
+        }
     }
 }

@@ -40,5 +40,11 @@ namespace Game.Enemy
         {
             _currentState?.Update();
         }
+
+        public void ResetState()
+        {
+            _currentState = _states[EnemyStateType.Idle];
+            _currentState.Enter();
+        }
     }
 }

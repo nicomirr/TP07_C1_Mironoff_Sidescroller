@@ -4,9 +4,9 @@ using Game.Data;
 using Game.ParticleEffects;
 
 public class EnemyDeath
-{
+{    
     private readonly GameObject _enemy;
-    private readonly ParticleEffectType _effectType;
+    private readonly ParticleEffectType _effectType;    
 
     public EnemyDeath(HealthDataSo data, GameObject enemy)
     {

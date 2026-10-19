@@ -15,7 +15,12 @@ namespace Game.Enemy
 
         public bool HasDetectedTarget()
         {
-             return _targetDetector.HasDetectedTarget();
+            return _targetDetector.HasDetectedTarget();
+        }
+
+        public void FaceTarget()
+        {
+            _targetDetector.FaceTarget();
         }
 
         public void ResetTargetDetection()

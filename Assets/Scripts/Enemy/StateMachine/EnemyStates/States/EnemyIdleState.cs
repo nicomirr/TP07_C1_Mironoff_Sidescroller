@@ -23,6 +23,8 @@ namespace Game.Enemy
 
         public override void Update()
         {
+            _awareness.FaceTarget();
+
             if (!_awareness.HasDetectedTarget()) return;
                         
             _fsm.ChangeState(_nextState);

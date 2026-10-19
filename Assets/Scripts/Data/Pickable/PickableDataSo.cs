@@ -8,12 +8,12 @@ namespace Game.Data
     {       
         [SerializeField] private PickableType _pickableType;
         public PickableType PickableType => _pickableType;
-
-        [SerializeField] private AudioCategory _pickableSFX;
-        public AudioCategory PowerUpSfx => _pickableSFX;
-
+                
         [SerializeField] private int _amount;
         public int Amount => _amount;
+
+        [SerializeField] private float _despawnTime;
+        public float DespawnTime => _despawnTime;
     }
 
 }

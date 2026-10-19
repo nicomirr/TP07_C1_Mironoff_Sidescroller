@@ -271,23 +271,23 @@ namespace Game.Player
                 this.gameObject.SetActive(false);
                 OnDeath?.Invoke(true, 0, this.transform.position);
             }
+
+            if (collision.gameObject.TryGetComponent(out IPickable pickable))
+            {
+                _playerCollisionHandler.HandlePickableCollision(pickable);
+            }
         }
 
         private void OnCollisionExit2D(Collision2D collision)
         {
             if (collision.gameObject.TryGetComponent(out IHorizontalVelocityProvider _))
             {
-                _playerMovement.ResetVelocityProvider();
-            }
+                _playerMovement.ResetVelocityProvider();           }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.TryGetComponent(out IPickable pickable))
-            {
-                _playerCollisionHandler.HandlePickableCollision(pickable);
-            }
-            else if (collision.gameObject.TryGetComponent(out IPowerUp powerUp))
+        {            
+            if (collision.gameObject.TryGetComponent(out IPowerUp powerUp))
             {
                 _playerCollisionHandler.HandlePowerUpsCollision(powerUp.Data);              
             }
@@ -303,7 +303,7 @@ namespace Game.Player
             return StartCoroutine(routine);
         }
 
-        public void ResetPlayer()
+        public void ResetObject()
         {
             _playerHealth.RestoreHealth();
             _playerFsm.ResetState();

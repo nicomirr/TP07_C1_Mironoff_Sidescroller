@@ -77,7 +77,7 @@ namespace Game.Management
 
             _playerObject.SetActive(true);                
 
-            _playerReset.ResetPlayer();
+            _playerReset.ResetObject();
         }
     }
 }

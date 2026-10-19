@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IReset
 {
-    public void ResetPlayer();
+    public void ResetObject();
 }

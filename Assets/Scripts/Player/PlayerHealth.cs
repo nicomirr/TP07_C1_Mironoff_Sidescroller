@@ -8,21 +8,13 @@ namespace Game.Player
     {
         public PlayerHealth(HealthDataSo data) : base(data) { }
 
-        public bool TryHeal(float amount)
+        public void Heal(float amount)
         {
-            if (_currentHealth == _maxHealth) return false;
+            if (_currentHealth == _maxHealth) return;
 
             _currentHealth = Math.Min(_currentHealth + amount, _maxHealth);
             
             RaiseHealthChanged();
-            return true;
-        }
-
-        public void RestoreHealth()
-        {
-            _currentHealth = _maxHealth;
-            RaiseHealthChanged();
-        }
+        }        
     }
-
 }
