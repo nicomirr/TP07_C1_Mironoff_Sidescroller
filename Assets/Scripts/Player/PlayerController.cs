@@ -10,12 +10,13 @@ using Game.Marker;
 using Game.Pickables;
 using Game.PowerUp;
 using Game.Throwables;
+using Game.Collectibles;
 
 namespace Game.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour, ICoroutineRunner, IHealthChangedNotifier, IDeathNotifier, IReset,
-        IPositionReader
+        IPositionReader, ICollectiblesProvider
     {
         [SerializeField] private GameObject _pauseNotifierGameObject;
 
@@ -43,11 +44,14 @@ namespace Game.Player
         private PlayerHealth _playerHealth;
         private PlayerCollisionHandler _playerCollisionHandler;
         private PlayerFootsteps _playerFootsteps;
+        private PlayerCollectibles _playerCollectibles;
 
         private IPauseNotifier _pauseNotifier;
 
         public event Action<float, float> OnHealthChanged;
         public event Action<bool, float, Vector3> OnDeath;
+        
+        public PlayerCollectibles Collectibles => _playerCollectibles;
 
         private void Awake()
         {
@@ -111,6 +115,8 @@ namespace Game.Player
 
             _playerFootsteps = new PlayerFootsteps(GetComponentInChildren<FootstepsMarker>().GetComponent<AudioSource>(),
                 _data.PlayerFootstepsData);
+
+            _playerCollectibles = new PlayerCollectibles();
         }
 
         private void OnEnable()
@@ -280,16 +286,27 @@ namespace Game.Player
 
         private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out IHorizontalVelocityProvider _))
-            {
-                _playerMovement.ResetVelocityProvider();           }
+            if (collision.gameObject.TryGetComponent(out IHorizontalVelocityProvider _))            
+                _playerMovement.ResetVelocityProvider();           
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {            
-            if (collision.gameObject.TryGetComponent(out IPowerUp powerUp))
+            if (collision.gameObject.TryGetComponent(out IPowerUp powerUp))            
+                _playerCollisionHandler.HandlePowerUpsCollision(powerUp.Data);             
+            
+            if(collision.gameObject.TryGetComponent(out Collectible collectible))
             {
-                _playerCollisionHandler.HandlePowerUpsCollision(powerUp.Data);              
+                _playerCollectibles.AddCollectible(collectible.CollectibleType);
+                collectible.Collect();
+            }
+
+            if (collision.gameObject.TryGetComponent(out IDamageProvider damageProvider))
+            {
+                float damageDirection = this.transform.position.x - collision.transform.position.x;
+
+                _audioPlayer.PlayAudio(AudioCategory.DamageSFX);
+                _playerCollisionHandler.HandleDamageCollision(collision.gameObject, damageProvider, damageDirection);
             }
         }
 

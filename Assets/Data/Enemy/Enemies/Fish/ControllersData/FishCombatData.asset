@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdc8b5f955bc2b49b83064d7a937c73, type: 3}
   m_Name: FishCombatData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyCombatDataSo
+  _attackData: {fileID: 11400000, guid: 0310c3fafd14a4e4b8bf94c3073bf3a7, type: 2}
   _contactDamage: 2

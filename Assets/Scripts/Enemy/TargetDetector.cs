@@ -6,6 +6,7 @@ namespace Game.Enemy
     {
         private readonly float _detectionRadius;
         private readonly float _facingRadius;
+        private readonly float _detectionWidth;
 
         private readonly LayerMask _targetLayer;
         private readonly Transform _ownerTransform;
@@ -17,6 +18,7 @@ namespace Game.Enemy
         {
             _detectionRadius = data.DetectionRadius;
             _facingRadius = data.FacingRadius;
+            _detectionWidth = data.DetectionWidth;
 
             _targetLayer = data.TargetLayer;
             _ownerTransform = ownerTransform;
@@ -49,6 +51,14 @@ namespace Game.Enemy
             _targetDetected = true;
                         
             return true;            
+        }
+
+        public bool TargetInAttackRange()
+        {
+            RaycastHit2D hit = Physics2D.BoxCast(_ownerTransform.position, new Vector2(_detectionWidth, 0.1f), 0f,
+                Vector2.down, Mathf.Infinity, _targetLayer);
+
+            return hit.collider != null;
         }
 
         public void ResetTargetDetection()

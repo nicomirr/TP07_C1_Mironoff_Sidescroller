@@ -12,6 +12,12 @@ namespace Game.Data
         [SerializeField] private EnemyStateType _fromJumpTransition;
         public EnemyStateType FromJumpTransition => _fromJumpTransition;
 
+        [SerializeField] private EnemyStateType _fromMoveTransition;
+        public EnemyStateType FromMoveTransition => _fromMoveTransition;
+
+        [SerializeField] private EnemyStateType _fromAttackTransition;
+        public EnemyStateType FromAttackTransition => _fromAttackTransition;
+
         [SerializeField] private FromWaitTransitionDataSo _waitTransitionData;
         public FromWaitTransitionDataSo WaitTransitionData => _waitTransitionData;
 

@@ -23,6 +23,11 @@ namespace Game.Enemy
             _targetDetector.FaceTarget();
         }
 
+        public bool TargetInAttackRange()
+        {
+            return _targetDetector.TargetInAttackRange();
+        }
+
         public void ResetTargetDetection()
         {
             _targetDetector.ResetTargetDetection();

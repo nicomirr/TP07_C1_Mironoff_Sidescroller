@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdc8b5f955bc2b49b83064d7a937c73, type: 3}
   m_Name: GreenSlimeCombatData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyCombatDataSo
+  _attackData: {fileID: 11400000, guid: 819ee5f99ccb5e0459ff0cc14c99e428, type: 2}
   _contactDamage: 1

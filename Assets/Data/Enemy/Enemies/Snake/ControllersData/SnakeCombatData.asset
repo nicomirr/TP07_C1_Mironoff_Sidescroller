@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bdc8b5f955bc2b49b83064d7a937c73, type: 3}
   m_Name: SnakeCombatData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyCombatDataSo
+  _attackData: {fileID: 11400000, guid: ef8737a20f3cc244e8bb6f3aa0657810, type: 2}
   _contactDamage: 2

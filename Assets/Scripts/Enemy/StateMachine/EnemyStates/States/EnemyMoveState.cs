@@ -1,3 +1,5 @@
+using Game.Core;
+
 namespace Game.Enemy
 {
     public class EnemyMoveState : EnemyState
@@ -5,11 +7,20 @@ namespace Game.Enemy
         private readonly EnemyStateMachine _fsm;
 
         private readonly EnemyLocomotionController _locomotion;
+        private readonly EnemyCombatController _combat;
+        private readonly EnemyAwarenessController _awareness;
 
-        public EnemyMoveState(EnemyStateMachine fsm, EnemyLocomotionController locomotion)
+        private readonly EnemyStateType _nextState;
+
+        public EnemyMoveState(EnemyStateMachine fsm, EnemyLocomotionController locomotion, EnemyCombatController combat,
+            EnemyAwarenessController awareness, EnemyStateType nextState)
         {
             _fsm = fsm;
             _locomotion = locomotion;
+            _combat = combat;
+            _awareness = awareness;
+
+            _nextState = nextState;
         }
 
         public override void Enter() { }
@@ -19,6 +30,9 @@ namespace Game.Enemy
         public override void Update()
         {
             _locomotion.Move();
+
+            if(_awareness.TargetInAttackRange() && _combat.CanAttack())
+                _fsm.ChangeState(_nextState);
         }
     }
 

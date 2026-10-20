@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c65ba585e786ed4185b746a4f632256, type: 3}
-  m_Name: GameManagerData
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.GameManagerDataSo
-  _deathHandlerData: {fileID: 11400000, guid: 530f316f9d314f34b9f2968b36ad1b24, type: 2}
+  m_Script: {fileID: 11500000, guid: 274839ff630d70a42af13ff2007a5f68, type: 3}
+  m_Name: FlyerMovementData
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyMovementDataSo
+  _movementType: 1
+  _movementSpeed: 2.5

@@ -7,6 +7,7 @@ namespace Game.Core
         Move,
         Jump,
         Wait,
-        End = 5
+        Attack,
+        End = 6
     }
 }

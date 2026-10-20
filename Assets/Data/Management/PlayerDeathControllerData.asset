@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5fd547e67667649b46fcbbff603393, type: 3}
+  m_Name: PlayerDeathControllerData
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Data.GameManagerDataSo
+  _deathHandlerData: {fileID: 11400000, guid: 530f316f9d314f34b9f2968b36ad1b24, type: 2}

@@ -11,5 +11,4 @@ namespace Game.Data
         [SerializeField] private EnemyJumpDataSo _jumpData;
         public EnemyJumpDataSo JumpData => _jumpData;
     }
-
 }

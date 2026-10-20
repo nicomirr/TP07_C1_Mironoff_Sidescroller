@@ -5,9 +5,9 @@ using Game.Data;
 
 namespace Game.Management
 {
-    public class GameManager : MonoBehaviour, ICoroutineRunner
+    public class PlayerDeathController : MonoBehaviour, ICoroutineRunner
     {
-        [SerializeField] private GameManagerDataSo _data;
+        [SerializeField] private PlayerDeathControllerDataSo _data;
 
         [SerializeField] private GameObject _playerObject;
 
