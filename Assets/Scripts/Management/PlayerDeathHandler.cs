@@ -20,11 +20,13 @@ namespace Game.Management
         private readonly ICheckpointReader _checkpointReader;
         private readonly IPositionReader _positionReader;
         private readonly IReset _playerReset;
+        private readonly IToggleable _toggleablePause;
 
         private readonly GameObject _playerObject;
 
         public PlayerDeathHandler(PlayerDeathHandlerDataSo data, ICoroutineRunner coroutineRunner, IScreenFader screenFader,
-            ICheckpointReader checkpointReader, GameObject playerObject, IPositionReader playerInitialPositionReader, IReset playerReset)
+            ICheckpointReader checkpointReader, GameObject playerObject, IPositionReader playerInitialPositionReader, IReset playerReset,
+            IToggleable toggleablePause)
         {
             _playerDoll = data.PlayerDollObject.GetComponent<PlayerDoll>();
 
@@ -38,6 +40,7 @@ namespace Game.Management
             _checkpointReader = checkpointReader;
             _positionReader = playerInitialPositionReader;
             _playerReset = playerReset;
+            _toggleablePause = toggleablePause;
 
             _playerObject = playerObject;
         }
@@ -62,6 +65,8 @@ namespace Game.Management
 
         private IEnumerator DeathRoutine(float delayTime)
         {
+            _toggleablePause.Disable();
+
             yield return new WaitForSeconds(delayTime);
 
             _screenFader.FadeOut();
@@ -78,6 +83,8 @@ namespace Game.Management
             _playerObject.SetActive(true);                
 
             _playerReset.ResetObject();
+
+            _toggleablePause.Enable();
         }
     }
 }

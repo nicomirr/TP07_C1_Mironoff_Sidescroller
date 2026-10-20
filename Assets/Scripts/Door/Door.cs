@@ -16,6 +16,7 @@ namespace Game.Door
         private void Awake()
         {
             _sceneChanger = _sceneChangerGameObject.GetComponent<ISceneChanger>();
+
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

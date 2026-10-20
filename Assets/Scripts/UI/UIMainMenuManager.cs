@@ -25,6 +25,8 @@ namespace Game.UI
 
         private void OnCreditsClicked()
         {
+            _audioSource.Play();
+
             _previousPanel = _currentPanel;
             _currentPanel = _creditsPanel;
 

@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using Game.Core;
 
 namespace Game.Inputs
 {
-    public class GlobalInputs : MonoBehaviour
+    public class GlobalInputs : MonoBehaviour, IToggleable
     {
         [SerializeField] private GameObject _pauseToggleGameObject;
 
@@ -48,6 +49,16 @@ namespace Game.Inputs
         private void OnPausePressed(InputAction.CallbackContext ctx)
         {
             _pauseToggle.TogglePauseState();
+        }
+
+        public void Enable()
+        {
+            _globalControls.Global.Enable();
+        }
+
+        public void Disable()
+        {
+            _globalControls.Global.Disable();
         }
     }
 }

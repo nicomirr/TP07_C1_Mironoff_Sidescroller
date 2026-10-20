@@ -16,7 +16,9 @@ namespace Game.UI
         [SerializeField] private Button _increaseVolumeButton;
 
         [SerializeField] private VolumeButtonsTypeSo _data;
-        
+
+        private AudioSource _audioSource;
+
         private IVolumeProvider _volumeProvider;
         private IVolumeChanger _volumeChanger;
 
@@ -24,6 +26,8 @@ namespace Game.UI
         {           
             _decreaseVolumeButton.onClick.AddListener(OnVolumeDecrease);
             _increaseVolumeButton.onClick.AddListener(OnVolumeIncrease);
+
+            _audioSource = GetComponent<AudioSource>(); 
 
             _volumeChanger = _volumeManagerChangerGameObject.GetComponent<IVolumeChanger>();
         }
@@ -60,13 +64,17 @@ namespace Game.UI
         private void OnVolumeIncrease()
         {
             _volumeFill.fillAmount = Mathf.Min(_volumeFill.fillAmount + 0.1f, 1f);
-            NotifyVolumeChange(); 
+            NotifyVolumeChange();
+
+            _audioSource.Play();
         }
 
         private void OnVolumeDecrease()
         {
             _volumeFill.fillAmount = Mathf.Max(_volumeFill.fillAmount - 0.1f, 0f);
             NotifyVolumeChange();
+
+            _audioSource.Play();
         }
 
         private void NotifyVolumeChange()

@@ -15,6 +15,8 @@ namespace Game.Management
 
         [SerializeField] private GameObject _checkpointReaderObject;
 
+        [SerializeField] private GameObject _pauseToggleableObject;
+
         private PlayerDeathHandler _playerDeathHandler;
 
         private IDeathNotifier _playerDeathNotifier;
@@ -31,8 +33,10 @@ namespace Game.Management
 
             IReset playerReset = _playerObject.GetComponent<IReset>();
 
+            IToggleable toggleable = _pauseToggleableObject.GetComponent<IToggleable>();
+
             _playerDeathHandler = new PlayerDeathHandler(_data.DeathHandlerData, this, screenFader, checkpointReader, _playerObject, 
-                playerInitialPositionReader, playerReset);
+                playerInitialPositionReader, playerReset, toggleable);
         }
 
         private void OnEnable()

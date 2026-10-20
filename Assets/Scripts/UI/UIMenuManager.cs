@@ -30,11 +30,14 @@ namespace Game.UI
         protected UIPanel _previousPanel;
         protected UIPanel _currentPanel;
 
+        protected AudioSource _audioSource;
+
         private bool _wasGamepad;
 
         protected virtual void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         protected virtual void OnEnable()
@@ -83,12 +86,16 @@ namespace Game.UI
 
         protected virtual void OnPlayClicked()
         {
+            _audioSource.Play();
+
             _currentPanel.HidePanel();
             _sceneChanger.ChangeScene(_sceneToLoad);
         }
 
         private void OnSettingsClicked()
         {
+            _audioSource.Play();
+
             _previousPanel = _currentPanel;
             _currentPanel = _settingsPanel;
 
@@ -97,6 +104,8 @@ namespace Game.UI
 
         private void OnExitClicked()
         {
+            _audioSource.Play();
+
             Application.Quit();
 
 #if UNITY_EDITOR
@@ -106,6 +115,8 @@ namespace Game.UI
 
         private void OnBackClicked()
         {
+            _audioSource.Play();
+
             UIPanel panel = _currentPanel;
 
             _currentPanel = _previousPanel;

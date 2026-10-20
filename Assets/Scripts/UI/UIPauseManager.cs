@@ -50,12 +50,16 @@ namespace Game.UI
 
         protected override void OnPlayClicked()
         {
+            _audioSource.Play();
+
             _pauseToggle.TogglePauseState();
             _currentPanel.HidePanel();
         }
 
         private void OnMainMenuClicked()
         {
+            _audioSource.Play();
+
             _currentPanel.HidePanel();
 
             _sceneChanger.ChangeScene(_sceneToLoad);
