@@ -28,10 +28,10 @@ namespace Game.Boat
             _movementStopper = _MovementStopperGameObject.GetComponent<IMovementStopper>();
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out ThrowableMarker _))
-            {                
+            if (collision.TryGetComponent(out ThrowableMarker _))
+            {
                 _animator.SetTrigger(_data.BellAnimationTrigger);
                 _audioSource.Play();
 
@@ -39,6 +39,7 @@ namespace Game.Boat
                 _boatTransform.position = new Vector3(_harborTransform.position.x, _boatTransform.position.y, _boatTransform.position.z);
             }
         }
+
     }
 
 }

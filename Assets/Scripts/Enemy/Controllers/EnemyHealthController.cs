@@ -4,7 +4,6 @@ using Game.Core;
 using Game.Data;
 using Game.Common;
 using Game.Audio;
-using Game.Marker;
 
 namespace Game.Enemy
 {
@@ -40,11 +39,11 @@ namespace Game.Enemy
         public void Initialize(AudioPlayer audioPlayer)
         {
             _audioPlayer = audioPlayer;
-        }
+        }               
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {           
-            if (!collision.gameObject.TryGetComponent(out IDamageProvider damageProvider))
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (!collision.TryGetComponent(out IDamageProvider damageProvider))
                 return;
 
             _audioPlayer.PlayAudio(AudioCategory.DamageSFX);

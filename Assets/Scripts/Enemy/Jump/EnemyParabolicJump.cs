@@ -1,8 +1,5 @@
 using UnityEngine;
-using Game.Core;
 using Game.Data;
-using Game.Marker;
-using System.Collections;
 
 public class EnemyParabolicJump : EnemyJump
 {
@@ -14,11 +11,13 @@ public class EnemyParabolicJump : EnemyJump
         _horizontalJumpForce = data.HorizontalJumpForce;
     }    
 
-    public override void Jump()
+    public override bool Jump()
     {
         float direction = _enemyTransform.right.x > 0 ? 1 : -1;
 
-        _rb.linearVelocity = new Vector2(_horizontalJumpForce * direction, _verticalJumpForce);        
+        _rb.linearVelocity = new Vector2(_horizontalJumpForce * direction, _verticalJumpForce);
+
+        return true;
     }
    
 }

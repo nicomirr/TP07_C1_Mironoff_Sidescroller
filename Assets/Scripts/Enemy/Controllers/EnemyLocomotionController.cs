@@ -19,14 +19,18 @@ namespace Game.Enemy
 
         private EnemyFacing _facing;
 
+        private Animator? _animator;
+
         private void Awake()
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
             _movement = EnemyLocomotionFactory.CreateMovement(_data.MovementData, rb, this.transform, this, this);
-            _jump = EnemyLocomotionFactory.CreateJump(_data.JumpData, rb, this.transform);
+            _jump = EnemyLocomotionFactory.CreateJump(_data.JumpData, rb, this.transform, this);
 
             _facing = new EnemyFacing(this.transform);
+
+            _animator = GetComponentInChildren<Animator>();
         }
 
         private void OnDisable()
@@ -47,8 +51,12 @@ namespace Game.Enemy
 
         public void Jump()
         {
-            _jump?.Jump();
-            _audioPlayer.PlayAudio(AudioCategory.JumpSFX);
+            if (_jump?.Jump() != true) return;
+
+            if (!_audioPlayer.IsPlaying())
+                _audioPlayer.PlayAudio(AudioCategory.JumpSFX);
+
+            _animator?.SetTrigger(_data.JumpData.JumpAnimationHash);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

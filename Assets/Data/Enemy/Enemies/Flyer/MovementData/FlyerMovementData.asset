@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FlyerMovementData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyMovementDataSo
   _movementType: 1
-  _movementSpeed: 2.5
+  _movementSpeed: 4.5

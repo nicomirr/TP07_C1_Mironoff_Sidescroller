@@ -71,5 +71,8 @@ TagManager:
   - name: Collisions
     uniqueID: 1910738629
     locked: 0
+  - name: Bullet
+    uniqueID: 3217417579
+    locked: 0
   m_RenderingLayers:
   - Default

@@ -21,11 +21,13 @@ namespace Game.Enemy
             };
         }
 
-        public static EnemyJump? CreateJump(EnemyJumpDataSo data, Rigidbody2D rb, Transform enemyTransform)
+        public static EnemyJump? CreateJump(EnemyJumpDataSo data, Rigidbody2D rb, Transform enemyTransform, ICoroutineRunner coroutineRunner)
         {
             return data.JumpType switch
             {
                 EnemyJumpType.ParabolicJump => new EnemyParabolicJump((EnemyParabolicJumpDataSo)data, rb, enemyTransform),
+
+                EnemyJumpType.LinearJump => new EnemyLinearJump((EnemyLinearJumpDataSo)data, rb, enemyTransform, coroutineRunner),
 
                 _ => null
             };

@@ -12,9 +12,9 @@ namespace Game.Surface
             _audioSource = GetComponent<AudioSource>();
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collision.gameObject.TryGetComponent(out ThrowableMarker _)) return;
+            if (!collision.TryGetComponent(out ThrowableMarker _)) return;
 
             _audioSource.Play();
         }

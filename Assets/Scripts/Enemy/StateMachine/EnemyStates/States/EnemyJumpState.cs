@@ -25,8 +25,9 @@ namespace Game.Enemy
         public override void Update()
         {           
             _locomotion.Jump(); 
-            
-            _fsm.ChangeState(_nextState);
+
+            if(_nextState != EnemyStateType.None)         
+                _fsm.ChangeState(_nextState);
         }
     }
 }

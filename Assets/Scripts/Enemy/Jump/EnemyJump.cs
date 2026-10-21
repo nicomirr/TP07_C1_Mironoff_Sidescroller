@@ -13,5 +13,5 @@ public abstract class EnemyJump
         _verticalJumpForce = verticalJumpForce;
     }
 
-    public abstract void Jump();
+    public abstract bool Jump();
 }

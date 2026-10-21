@@ -15,4 +15,4 @@ MonoBehaviour:
   _attackType: 1
   _cooldown: 1
   _bulletPrefab: {fileID: 2282561018625670335, guid: da0c40f4771e38d43a5f1c15128b6c32, type: 3}
-  _bulletAmount: 5
+  _bulletAmount: 10

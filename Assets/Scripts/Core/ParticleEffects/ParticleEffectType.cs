@@ -7,6 +7,7 @@ namespace Game.Core
         GreenSlimeDeath,
         SnakeDeath,
         WaterImpact,
-        End = 5
+        BlueSlimeDeath,
+        End = 6
     }
 }

@@ -9,4 +9,7 @@ public class EnemyJumpDataSo : ScriptableObject
 
     [SerializeField] private float _verticalJumpForce;
     public float VerticalJumpForce => _verticalJumpForce;
+
+    [SerializeField] private string _jumpAnimation;
+    public int JumpAnimationHash => Animator.StringToHash(_jumpAnimation);
 }

@@ -26,6 +26,11 @@ namespace Game.Audio
         {
             _audioSource.PlayOneShot(_audios[category]);
         }
+
+        public bool IsPlaying()
+        {
+            return _audioSource.isPlaying;
+        }
     }
 }
 

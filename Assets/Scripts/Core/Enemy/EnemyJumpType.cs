@@ -4,6 +4,7 @@ namespace Game.Data
     {
         None = 0,
         ParabolicJump,
-        End = 2
+        LinearJump,
+        End = 3
     }
 }

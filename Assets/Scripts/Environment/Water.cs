@@ -12,7 +12,16 @@ namespace Game.Environment
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.gameObject.TryGetComponent(out EnemyMarker _) || collision.gameObject.TryGetComponent(out ThrowableMarker _))
+            if(collision.gameObject.TryGetComponent(out EnemyMarker _))
+            {
+                collision.gameObject.SetActive(false);
+                CommandBus.Send(new PlayParticleEffectCommand(_data.EffectType, collision.transform.position));
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.TryGetComponent(out ThrowableMarker _))
             {
                 collision.gameObject.SetActive(false);
                 CommandBus.Send(new PlayParticleEffectCommand(_data.EffectType, collision.transform.position));
