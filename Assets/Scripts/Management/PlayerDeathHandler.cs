@@ -73,8 +73,8 @@ namespace Game.Management
 
             yield return new WaitForSeconds(_restartTime);
 
-            _playerObject.transform.position = _checkpointReader.CurrentCheckpointValue == 0 ?
-                _positionReader.Position : _checkpointReader.CurrentCheckpointPosition;
+            _playerObject.transform.position = _checkpointReader.FirstCheckpointReached ? 
+                _checkpointReader.CurrentCheckpointPosition : _positionReader.Position;
 
             yield return new WaitForSeconds(_restartTime);
 

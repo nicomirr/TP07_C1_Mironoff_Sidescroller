@@ -9,10 +9,10 @@ namespace Game.Checkpoints
     {
         [SerializeField] private GameObject _checkpointSetterObject;
 
-        [SerializeField] private int _checkpointNumber;
-
         [SerializeField] private CheckpointDataSo _data;
-        [SerializeField] private CanvasGroup _checkpointTextCanvasGroup;        
+        [SerializeField] private CanvasGroup _checkpointTextCanvasGroup;
+
+        private static Checkpoint _instance;
 
         private AudioSource _audioSource;
 
@@ -22,7 +22,6 @@ namespace Game.Checkpoints
 
         private bool _checkpointUsed;
 
-        public int CheckpointNumber => _checkpointNumber;
 
         private void Awake()
         {
@@ -50,7 +49,7 @@ namespace Game.Checkpoints
 
             if (_checkpointUsed) return;
 
-            _animator.SetTrigger(_data.CheckpointUsedAnimationHash);
+            _animator.SetBool(_data.CheckpointUsedAnimationHash, true);
             _audioSource.Play();
 
             _checkpointUsed = true;
@@ -58,15 +57,23 @@ namespace Game.Checkpoints
             _checkpointSetter.SetCheckpoint(this);
 
             StartCoroutine(DisplayCheckpointRoutine());
+
+            if(_instance == null)
+            {
+                _instance = this;
+                return;
+            }
+
+            _instance.ReenableCheckpoint();
+            _instance = this;
         }
 
-        public void DisableCheckpoint()
+        private void ReenableCheckpoint()
         {
-            if(_checkpointUsed) return;
-
-            _animator.SetTrigger(_data.CheckpointUsedAnimationHash);
-            _checkpointUsed = true;
+            _animator.SetBool(_data.CheckpointUsedAnimationHash, false);
+            _checkpointUsed = false;
         }
+
     }
 }
 

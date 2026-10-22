@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: HunterDialoguesData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.ShopDataSo
   _availableQuestText:
-  - You want keys?
-  - Me got key.
-  - You want key?
-  - Gold coins, gold coins.
-  - Hunter, hunter.
-  - 50 gold coins.
-  - You door open.
+  - You need some coins?
+  - Got some work if you are in need.
+  - Kill the following.
+  - 10 slimes.
+  - 5 snakes.
+  - 2 flyers.
+  - 5 coins for everything.
   _finalizedQuestText: []
   _letterDelayTime: 0.06
