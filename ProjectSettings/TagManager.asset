@@ -21,10 +21,10 @@ TagManager:
   - Bell
   - EnemyFish
   - Pickable
-  - 
-  - 
-  - 
-  - 
+  - Collectible
+  - EnemyBullet
+  - Checkpoint
+  - Shop
   - 
   - 
   - 

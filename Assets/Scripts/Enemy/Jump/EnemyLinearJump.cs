@@ -5,7 +5,7 @@ using Game.Data;
 
 namespace Game.Enemy
 {
-    public class EnemyLinearJump : EnemyJump
+    public class EnemyLinearJump : EnemyJump, IReset
     {
         private readonly float _jumpCooldown;
 
@@ -37,12 +37,17 @@ namespace Game.Enemy
             _cooldownRoutine = _coroutineRunner.RunCoroutine(CooldownRoutine());
 
             return true;
-        }
+        }        
 
         private IEnumerator CooldownRoutine()
         {
             yield return new WaitForSeconds(_jumpCooldown);
 
+            _canJump = true;
+        }
+
+        public void ResetObject()
+        {
             _canJump = true;
         }
     }

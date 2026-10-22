@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c26eb7332c53743b61b97de4bdd2b2, type: 3}
   m_Name: BlueSlimeHealthData
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.HealthDataSo
-  _maxHealth: 10
+  _maxHealth: 4
   effectType: 5

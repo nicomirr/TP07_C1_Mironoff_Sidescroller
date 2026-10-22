@@ -733,7 +733,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _pauseNotifierGameObject: {fileID: 0}
-  _doll: {fileID: 201207104941614737, guid: 31122337f63f84f4d97f684510e7a9db, type: 3}
   _data: {fileID: 11400000, guid: 76b7920ae61f4244bb18857b09708d8b, type: 2}
   _throwablesParent: {fileID: 0}
 --- !u!50 &6833376841393045353
@@ -865,7 +864,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6731198689030843207, guid: 273b608f2f70ecc4484d54619c438c89, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: ad8d12ba4bf307c4c8eea78aa5ebe69f, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

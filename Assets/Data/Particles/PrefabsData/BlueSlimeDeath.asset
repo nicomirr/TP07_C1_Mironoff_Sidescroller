@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d5d572177db274384372952d749d4c, type: 3}
   m_Name: BlueSlimeDeath
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.ParticleEffectDataSo
-  _particleEffectType: 2
-  _particleSystemPrefab: {fileID: 4755681275756482203, guid: 8d73cbeed79bab047a156b287e5baa8c, type: 3}
+  _particleEffectType: 5
+  _particleSystemPrefab: {fileID: 4755681275756482203, guid: d16d39f02340bea48a704edbcf014898, type: 3}
   _poolSize: 4

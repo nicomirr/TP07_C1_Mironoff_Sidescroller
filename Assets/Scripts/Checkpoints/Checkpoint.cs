@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Game.Data;
+using Game.Marker;
 
 namespace Game.Checkpoints
 {
@@ -45,6 +46,8 @@ namespace Game.Checkpoints
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (!collision.TryGetComponent(out PlayerMarker _)) return;
+
             if (_checkpointUsed) return;
 
             _animator.SetTrigger(_data.CheckpointUsedAnimationHash);

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e22b312536300478a4b282abb79044, type: 3}
   m_Name: FastEnemyBullet
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBulletDataSo
-  _speed: 20
+  _speed: 18
   _lifetime: 5
   _damage: 2

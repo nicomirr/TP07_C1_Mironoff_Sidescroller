@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Data.EnemyLinearJumpDataSo
   _jumpType: 2
   _verticalJumpForce: 24
+  _jumpAnimation: Jump
   _jumpCooldown: 3

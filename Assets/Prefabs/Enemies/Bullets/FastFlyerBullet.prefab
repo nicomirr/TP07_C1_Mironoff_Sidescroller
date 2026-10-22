@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1836843464161665842}
   - component: {fileID: 6415023686993277058}
   - component: {fileID: 4264416078704411709}
-  m_Layer: 0
-  m_Name: FlyerBullet
+  m_Layer: 17
+  m_Name: FastFlyerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

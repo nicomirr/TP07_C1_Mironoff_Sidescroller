@@ -33,6 +33,11 @@ namespace Game.Enemy
             _animator = GetComponentInChildren<Animator>();
         }
 
+        private void OnEnable()
+        {
+            (_jump as IReset)?.ResetObject();
+        }
+
         private void OnDisable()
         {
             if (_movement is IDisableable disableable)            
