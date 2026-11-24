@@ -61,6 +61,7 @@ namespace Game.UI
 
         private void Update()
         {
+            // Warning: String mágico. Declaralo como const string GAMEPAD_SCHEME = "Gamepad"; o tomalo de un SO, como hacés con los hashes de animación.
             bool isGamepad = _playerInput.currentControlScheme == "Gamepad";
 
             if (isGamepad != _wasGamepad)            

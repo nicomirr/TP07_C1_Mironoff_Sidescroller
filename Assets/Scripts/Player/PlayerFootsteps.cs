@@ -24,6 +24,8 @@ namespace Game.Player
         {
             if (_audioSource.isPlaying) return;
 
+            // Warning: Indexar el diccionario sin TryGetValue lanza KeyNotFoundException si el jugador pisa un suelo sin SurfaceIdentifier
+            // (queda el SurfaceType por defecto) o con un tipo que no está en PlayerFootstepsData. Usá TryGetValue y salí si no existe.
             _audioSource.clip = _footsteps[surfaceType];
 
             _audioSource.Play();

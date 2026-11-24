@@ -11,6 +11,7 @@ namespace Game.Player
 
         private readonly Rigidbody2D _rb;
 
+        // Suggestion: _particleEffectsPlayer, _audioPlayer y la property JumpUsed no se usan en ningún lado. Borralos junto con los using de Game.Audio y Game.ParticleEffects.
         private readonly ParticleEffectsPlayer _particleEffectsPlayer;
         private readonly AudioPlayer _audioPlayer;
 

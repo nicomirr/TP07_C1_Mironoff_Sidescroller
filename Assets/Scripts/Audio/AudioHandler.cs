@@ -3,6 +3,8 @@ using Game.Core;
 
 namespace Game.Audio
 {
+    // Suggestion: Esta clase no está en ninguna escena ni prefab, y _pauseNotifier nunca se asigna desde _pauseNotifierGameObject
+    // (daría NullReferenceException en OnEnable). Terminala o borrala.
     public class AudioHandler : MonoBehaviour
     {
         [SerializeField] private GameObject _pauseNotifierGameObject;

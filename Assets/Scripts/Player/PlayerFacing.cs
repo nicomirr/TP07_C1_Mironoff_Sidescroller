@@ -17,6 +17,8 @@ namespace Game.Player
 
         public void Flip(float direction)
         {
+            // Warning: direction viene de un analógico (float); compararlo con == 0 no tolera ruido del stick.
+            // Usá Mathf.Abs(direction) < un umbral (deadzone) definido en el SO.
             if (direction == 0) return;
 
             _isFacingRight = direction > 0;

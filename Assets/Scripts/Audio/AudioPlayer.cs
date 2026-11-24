@@ -24,6 +24,8 @@ namespace Game.Audio
 
         public void PlayAudio(AudioCategory category)
         {
+            // Warning: Si el AudioConfigSo no tiene esa categoría (por ejemplo, JumpSFX en GreenSlimeAudioConfig) esto lanza KeyNotFoundException.
+            // Usá _audios.TryGetValue(category, out AudioClip clip) y logueá una advertencia si falta.
             _audioSource.PlayOneShot(_audios[category]);
         }
     }

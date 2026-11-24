@@ -19,6 +19,8 @@ namespace Game.Throwables
 
             foreach(ThrowablePrefabDataSo prefab in data.ThrowablePrefabs)
             {
+                // Warning: El return de abajo sale del constructor antes de asignar _parent y deja sin registrar los prefabs restantes.
+                // Usá continue para saltear sólo el prefab inválido y asigná _parent al principio del constructor.
                 if(!prefab.ThrowablePrefab.TryGetComponent<Throwable>(out Throwable throwable))
                 {
                     Debug.LogError("Error. Los prefabs para el ThrowableFactory deberian todos ser de tipo Throwable.");

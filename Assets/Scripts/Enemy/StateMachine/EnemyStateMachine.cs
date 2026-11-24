@@ -43,6 +43,7 @@ namespace Game.Enemy
 
         public void ResetState()
         {
+            // Suggestion: ResetState cambia de estado sin llamar a _currentState.Exit(), a diferencia de ChangeState. Llamalo antes para mantener el contrato Enter/Exit.
             _currentState = _states[EnemyStateType.Idle];
             _currentState.Enter();
         }

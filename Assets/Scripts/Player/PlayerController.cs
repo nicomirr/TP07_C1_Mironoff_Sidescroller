@@ -227,6 +227,8 @@ namespace Game.Player
         }
         private void HandleThrowFinished()
         {
+            // Error: La consigna pide sonido al disparar y en ningún punto del disparo (HandleThrow, HandleThrowFinished, PlayerThrow.Throw) se reproduce un clip.
+            // Agregá una AudioCategory para el lanzamiento en PlayerAudioConfig y llamá a _audioPlayer.PlayAudio(...) acá.
             _playerThrow.Throw(_playerFacing.IsFacingRight ? 1 : -1, _rb.linearVelocity);
 
             _playerAnimations.SetThrowAnimation(false);
@@ -257,6 +259,8 @@ namespace Game.Player
             {
                 float damageDirection = this.transform.position.x - collision.transform.position.x;
 
+                // Bug: El sonido de daño se reproduce antes de saber si el daño se aplicó. Si el jugador está Invincible o ya en Damaged,
+                // TryDamage no hace nada pero el clip suena igual. Reproducilo dentro de PlayerDamageHandler.TryDamage, después del TryChangeState exitoso.
                 _audioPlayer.PlayAudio(AudioCategory.DamageSFX);
                 _playerCollisionHandler.HandleDamageCollision(collision.gameObject, damageProvider, damageDirection);
             }
@@ -295,6 +299,8 @@ namespace Game.Player
 
         private void RaiseHealthChanged(float currentHealth, float maxHealth)
         {
+            // Warning: Invoke sin ?. lanza NullReferenceException si nadie está suscripto (por ejemplo, si se quita el UIHealth del prefab).
+            // Usá OnHealthChanged?.Invoke(...) como hacés en Health y en EnemyHealthController.
             OnHealthChanged.Invoke(currentHealth, maxHealth);
         }
 

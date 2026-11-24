@@ -30,6 +30,8 @@ public class EnemyLifecycleHandler : MonoBehaviour
 
     private void Update()
     {
+        // Suggestion: Consultar activeSelf cada frame para detectar la muerte es polling. Exponé un evento OnDeath en EnemyDeath/EnemyHealthController
+        // y arrancá la corrutina al recibirlo.
         if (_enemyObject.gameObject.activeSelf) return;
 
         if (_respawnRoutine != null) return;
@@ -41,6 +43,8 @@ public class EnemyLifecycleHandler : MonoBehaviour
     {
         _lootDropper.DropLoot();
 
+        // Bug: El tiempo de respawn está hardcodeado en 10 y se ignora _data.RespawnTime (EnemyLifecycleHandlerData.asset tiene 15).
+        // Usá yield return new WaitForSeconds(_data.RespawnTime);
         yield return new WaitForSeconds(10);
 
         _enemyObject.transform.position  = _enemyInitialPos;

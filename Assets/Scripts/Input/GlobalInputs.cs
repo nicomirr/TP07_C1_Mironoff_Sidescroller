@@ -36,6 +36,7 @@ namespace Game.Inputs
         private void OnDisable()
         {
             _pauseInput.performed -= OnPausePressed;
+            // Warning: GameControls nunca se libera. Agregá OnDestroy con _globalControls.Dispose(), como hacés en PlayerInputs.Deinitialize.
             _globalControls.Global.Disable();
         }
 

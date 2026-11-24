@@ -51,6 +51,7 @@ namespace Game.Throwables
             gameObject.SetActive(false);
         }
 
+        // Suggestion: Código muerto comentado; _collider sólo se usaba acá. Si no lo vas a usar, borrá el bloque y el campo.
         //private void OnTriggerEnter2D(Collider2D collision)
         //{
         //    ColliderDistance2D distance = _collider.Distance(collision);

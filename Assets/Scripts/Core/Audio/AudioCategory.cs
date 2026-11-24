@@ -5,6 +5,7 @@ namespace Game.Core
         None = 0,
         JumpSFX,
         LandSFX,
+        // Suggestion: SheepSFX, TreeSFX, KnockSFX, BushSFX, CloudSFX y LandSFX no se usan en el proyecto. Limpiá el enum.
         SheepSFX,
         TreeSFX,
         BellSFX,

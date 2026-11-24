@@ -20,6 +20,7 @@ namespace Game.AnimationSystem
 
             if (!animationFound) return;
 
+            // Warning: Comparación de floats con ==. Usá Mathf.Approximately(value, _animator.GetFloat(hash)).
             if (value == _animator.GetFloat(hash)) return;
 
             _animator.SetFloat(hash, value);

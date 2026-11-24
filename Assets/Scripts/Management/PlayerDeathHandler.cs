@@ -44,6 +44,8 @@ namespace Game.Management
 
         public void HandleDeath(bool isWater, float direction, Vector3 position)
         {
+            // Error: La consigna pide sonido al perder. La muerte normal sólo instancia el PlayerDoll (sin AudioSource) y no reproduce ningún clip.
+            // Agregá un clip de derrota (en PlayerDoll o en un AudioPlayer del GameManager) y reproducilo acá.
             float delayTime = _deathTime;
 
             if(isWater)

@@ -4,6 +4,8 @@ using Game.Data;
 using Game.Surface;
 using Game.Core;
 
+// Suggestion: Esta clase no tiene namespace, igual que EnemyDeath, LootDropper, EnemyLifecycleHandler, EnemyJump y EnemyParabolicJump.
+// El resto del proyecto usa Game.*; ponela en Game.Player para ser consistente.
 public class PlayerGroundCheck 
 {
     private readonly Transform _groundCheck;

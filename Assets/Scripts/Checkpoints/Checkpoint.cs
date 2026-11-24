@@ -45,6 +45,8 @@ namespace Game.Checkpoints
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            // Warning: El trigger no filtra quién entra: cualquier collider (una piedra, un enemigo) activa el checkpoint.
+            // Verificá collision.TryGetComponent(out PlayerMarker _) antes de activarlo.
             if (_checkpointUsed) return;
 
             _animator.SetTrigger(_data.CheckpointUsedAnimationHash);

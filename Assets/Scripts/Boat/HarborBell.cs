@@ -9,6 +9,7 @@ namespace Game.Boat
     {
         [SerializeField] private HarborBellDataSo _data;
 
+        // Suggestion: Naming inconsistente: el resto de los campos usa _camelCase. Renombralo a _movementStopperGameObject.
         [SerializeField] private GameObject _MovementStopperGameObject;
 
         [SerializeField] private Transform _boatTransform;

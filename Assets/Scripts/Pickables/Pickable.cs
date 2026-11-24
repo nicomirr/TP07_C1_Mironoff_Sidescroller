@@ -28,6 +28,7 @@ namespace Game.Pickables
 
         private void OnEnable()
         {
+            // Suggestion: Este if no hace nada útil (pone null algo que se sobrescribe en la línea siguiente). Si querías cortar una corrutina previa, usá StopCoroutine.
             if(_despawnRoutine != null)
                 _despawnRoutine = null;
 

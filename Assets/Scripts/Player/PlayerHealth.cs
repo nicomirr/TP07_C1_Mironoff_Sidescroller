@@ -10,6 +10,7 @@ namespace Game.Player
 
         public void Heal(float amount)
         {
+            // Warning: Comparación de floats con ==. Usá Mathf.Approximately o >= para no depender de la precisión.
             if (_currentHealth == _maxHealth) return;
 
             _currentHealth = Math.Min(_currentHealth + amount, _maxHealth);

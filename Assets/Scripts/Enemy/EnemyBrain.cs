@@ -53,6 +53,8 @@ namespace Game.Enemy
 
         private void Update()
         {
+            // Warning: La FSM corre en Update y EnemyMoveState termina seteando _rb.linearVelocity (EnemyForwardMovement.Move, EnemyDashMovement.Move).
+            // La física va en FixedUpdate: separá la lógica de decisión (Update) de la aplicación de velocidad (FixedUpdate).
             _fsm.Update();
         }
 
